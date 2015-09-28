@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="SmsmessageCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateSmsmessageTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:SmsmessageListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="SmsmessageCreateForm">
+
+                <h:panelGroup id="display" rendered="#{smsmessageController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_id}" for="id" />
+                            <p:inputText id="id" value="#{smsmessageController.selected.id}" title="#{myBundle.CreateSmsmessageTitle_id}" required="true" requiredMessage="#{myBundle.CreateSmsmessageRequiredMessage_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_dwfield1}" for="dwfield1" />
+                            <p:inputText id="dwfield1" value="#{smsmessageController.selected.dwfield1}" title="#{myBundle.CreateSmsmessageTitle_dwfield1}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_dwfield2}" for="dwfield2" />
+                            <p:inputText id="dwfield2" value="#{smsmessageController.selected.dwfield2}" title="#{myBundle.CreateSmsmessageTitle_dwfield2}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_dwfield3}" for="dwfield3" />
+                            <p:inputText id="dwfield3" value="#{smsmessageController.selected.dwfield3}" title="#{myBundle.CreateSmsmessageTitle_dwfield3}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_message}" for="message" />
+                            <p:inputText id="message" value="#{smsmessageController.selected.message}" title="#{myBundle.CreateSmsmessageTitle_message}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_recipient}" for="recipient" />
+                            <p:inputText id="recipient" value="#{smsmessageController.selected.recipient}" title="#{myBundle.CreateSmsmessageTitle_recipient}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_status}" for="status" />
+                            <p:inputText id="status" value="#{smsmessageController.selected.status}" title="#{myBundle.CreateSmsmessageTitle_status}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_wfield1}" for="wfield1" />
+                            <p:inputText id="wfield1" value="#{smsmessageController.selected.wfield1}" title="#{myBundle.CreateSmsmessageTitle_wfield1}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_wfield2}" for="wfield2" />
+                            <p:inputText id="wfield2" value="#{smsmessageController.selected.wfield2}" title="#{myBundle.CreateSmsmessageTitle_wfield2}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_wfield3}" for="wfield3" />
+                            <p:inputText id="wfield3" value="#{smsmessageController.selected.wfield3}" title="#{myBundle.CreateSmsmessageTitle_wfield3}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{smsmessageController.saveNew}" value="#{myBundle.Save}" update="display,:SmsmessageListPage:SmsmessageListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:SmsmessageListPage')}">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

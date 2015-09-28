@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="SystemuserEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditSystemuserTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:SystemuserListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="SystemuserEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{systemuserController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditSystemuserLabel_id}" for="id" />
+                            <h:outputText id="id" value="#{systemuserController.selected.id}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditSystemuserLabel_cellphonenumber}" for="cellphonenumber" />
+                            <p:inputText id="cellphonenumber" value="#{systemuserController.selected.cellphonenumber}" title="#{myBundle.EditSystemuserTitle_cellphonenumber}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditSystemuserLabel_email}" for="email" />
+                            <p:inputText id="email" value="#{systemuserController.selected.email}" title="#{myBundle.EditSystemuserTitle_email}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditSystemuserLabel_fullname}" for="fullname" />
+                            <p:inputText id="fullname" value="#{systemuserController.selected.fullname}" title="#{myBundle.EditSystemuserTitle_fullname}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditSystemuserLabel_password}" for="password" />
+                            <p:inputText id="password" value="#{systemuserController.selected.password}" title="#{myBundle.EditSystemuserTitle_password}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditSystemuserLabel_username}" for="username" />
+                            <p:inputText id="username" value="#{systemuserController.selected.username}" title="#{myBundle.EditSystemuserTitle_username}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{systemuserController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:SystemuserListPage:SystemuserListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:SystemuserListPage')}">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

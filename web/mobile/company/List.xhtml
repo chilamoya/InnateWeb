@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="CompanyListPage">
+        <pm:header title="#{myBundle.ListCompanyTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":CompanyCreatePage:CompanyCreateForm" actionListener="#{companyController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:CompanyCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="CompanyListForm">
+
+                <p:dataTable id="datalist"
+                             value="#{companyController.items}"
+                             var="item"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             selectionMode="single"
+                             selection="#{companyController.selected}"
+                             reflow="true">
+
+                    <p:ajax event="rowSelect"   update="@form:editButton,@form:deleteButton"/>
+                    <p:ajax event="rowUnselect" update="@form:editButton,@form:deleteButton"/>
+                    <p:ajax event="swipeleft"   oncomplete="document.getElementById('CompanyListPage:CompanyListForm:deleteButton').click();"/>
+                    <p:ajax event="tap"         oncomplete="document.getElementById('CompanyListPage:CompanyListForm:editButton').click();"/>
+
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{myBundle.ListCompanyTitle_id}">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.address}" filterBy="#{item.address}" headerText="#{myBundle.ListCompanyTitle_address}">
+                        <h:outputText value="#{item.address}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.code}" filterBy="#{item.code}" headerText="#{myBundle.ListCompanyTitle_code}">
+                        <h:outputText value="#{item.code}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.contactemail}" filterBy="#{item.contactemail}" headerText="#{myBundle.ListCompanyTitle_contactemail}">
+                        <h:outputText value="#{item.contactemail}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.contactnumber}" filterBy="#{item.contactnumber}" headerText="#{myBundle.ListCompanyTitle_contactnumber}">
+                        <h:outputText value="#{item.contactnumber}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.createddate}" filterBy="#{item.createddate}" headerText="#{myBundle.ListCompanyTitle_createddate}">
+                        <h:outputText value="#{item.createddate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+                    <!--
+                                        <p:column sortBy="#{item.mobilenumber}" filterBy="#{item.mobilenumber}" headerText="#{myBundle.ListCompanyTitle_mobilenumber}">
+                                            <h:outputText value="#{item.mobilenumber}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.name}" filterBy="#{item.name}" headerText="#{myBundle.ListCompanyTitle_name}">
+                                            <h:outputText value="#{item.name}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.smsbalance}" filterBy="#{item.smsbalance}" headerText="#{myBundle.ListCompanyTitle_smsbalance}">
+                                            <h:outputText value="#{item.smsbalance}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.smspassword}" filterBy="#{item.smspassword}" headerText="#{myBundle.ListCompanyTitle_smspassword}">
+                                            <h:outputText value="#{item.smspassword}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.smsusername}" filterBy="#{item.smsusername}" headerText="#{myBundle.ListCompanyTitle_smsusername}">
+                                            <h:outputText value="#{item.smsusername}"/>
+                                        </p:column>
+                    -->
+                </p:dataTable>
+                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":CompanyEditPage:CompanyEditForm" disabled="#{empty companyController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:CompanyEditPage')}"/>
+                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{companyController.delete}" update=":growl,datalist" disabled="#{empty companyController.selected}">
+                    <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                </p:commandButton>
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

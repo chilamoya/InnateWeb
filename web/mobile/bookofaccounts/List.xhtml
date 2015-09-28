@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="BookofaccountsListPage">
+        <pm:header title="#{myBundle.ListBookofaccountsTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":BookofaccountsCreatePage:BookofaccountsCreateForm" actionListener="#{bookofaccountsController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:BookofaccountsCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="BookofaccountsListForm">
+
+                <p:dataTable id="datalist"
+                             value="#{bookofaccountsController.items}"
+                             var="item"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             selectionMode="single"
+                             selection="#{bookofaccountsController.selected}"
+                             reflow="true">
+
+                    <p:ajax event="rowSelect"   update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel" listener="#{bookofaccountsController.resetParents}"/>
+                    <p:ajax event="rowUnselect" update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel" listener="#{bookofaccountsController.resetParents}"/>
+                    <p:ajax event="swipeleft"   oncomplete="document.getElementById('BookofaccountsListPage:BookofaccountsListForm:deleteButton').click();"/>
+                    <p:ajax event="tap"         oncomplete="document.getElementById('BookofaccountsListPage:BookofaccountsListForm:editButton').click();"/>
+                    <p:ajax event="taphold"     oncomplete="document.getElementById('BookofaccountsListPage:BookofaccountsListForm:navigationMenuButton').click();"/>
+
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{myBundle.ListBookofaccountsTitle_id}">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.balance}" filterBy="#{item.balance}" headerText="#{myBundle.ListBookofaccountsTitle_balance}">
+                        <h:outputText value="#{item.balance}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.createdate}" filterBy="#{item.createdate}" headerText="#{myBundle.ListBookofaccountsTitle_createdate}">
+                        <h:outputText value="#{item.createdate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.currentbalance}" filterBy="#{item.currentbalance}" headerText="#{myBundle.ListBookofaccountsTitle_currentbalance}">
+                        <h:outputText value="#{item.currentbalance}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.description}" filterBy="#{item.description}" headerText="#{myBundle.ListBookofaccountsTitle_description}">
+                        <h:outputText value="#{item.description}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.erpmodule}" filterBy="#{item.erpmodule}" headerText="#{myBundle.ListBookofaccountsTitle_erpmodule}">
+                        <h:outputText value="#{item.erpmodule}"/>
+                    </p:column>
+
+                    <!--
+                                        <p:column sortBy="#{item.rawdata}" filterBy="#{item.rawdata}" headerText="#{myBundle.ListBookofaccountsTitle_rawdata}">
+                                            <h:outputText value="#{item.rawdata}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.transactiondate}" filterBy="#{item.transactiondate}" headerText="#{myBundle.ListBookofaccountsTitle_transactiondate}">
+                                            <h:outputText value="#{item.transactiondate}">
+                                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            </h:outputText>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.creditedaccountId.description}" filterBy="#{item.creditedaccountId.description}" headerText="#{myBundle.ListBookofaccountsTitle_creditedaccountId}">
+                                            <h:outputText value="#{item.creditedaccountId.description}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.debitedaccountId.description}" filterBy="#{item.debitedaccountId.description}" headerText="#{myBundle.ListBookofaccountsTitle_debitedaccountId}">
+                                            <h:outputText value="#{item.debitedaccountId.description}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.transactionId.id}" filterBy="#{item.transactionId.id}" headerText="#{myBundle.ListBookofaccountsTitle_transactionId}">
+                                            <h:outputText value="#{item.transactionId.id}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.userId.fullname}" filterBy="#{item.userId.fullname}" headerText="#{myBundle.ListBookofaccountsTitle_userId}">
+                                            <h:outputText value="#{item.userId.fullname}"/>
+                                        </p:column>
+                    -->
+                </p:dataTable>
+                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":BookofaccountsEditPage:BookofaccountsEditForm" disabled="#{empty bookofaccountsController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:BookofaccountsEditPage')}"/>
+                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{bookofaccountsController.delete}" update=":growl,datalist" disabled="#{empty bookofaccountsController.selected}">
+                    <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                </p:commandButton>
+                <p:commandButton id="navigationMenuButton" style="visibility: hidden;" value="#{myBundle.Menu}" disabled="#{empty bookofaccountsController.selected}"/>
+
+                <p:overlayPanel id="navigationMenuPanel" for="navigationMenuButton" at="right" showEffect="overlay">
+                    <h2>#{myBundle.BookofaccountsHeading} #{myBundle.Menu}</h2>
+                    <p:menu>
+                        <p:menuitem value="#{myBundle.BookofaccountsMenuItem_creditedaccountId}" icon="ui-icon-search" update=":AccountEditPage:AccountEditForm" disabled="#{empty bookofaccountsController.selected.creditedaccountId}" actionListener="#{bookofaccountsController.prepareCreditedaccountId}" action="#{mobilePageController.navigateWithHistory}">  
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="pm:AccountEditPage"/>
+                        </p:menuitem>
+                        <p:menuitem value="#{myBundle.BookofaccountsMenuItem_debitedaccountId}" icon="ui-icon-search" update=":AccountEditPage:AccountEditForm" disabled="#{empty bookofaccountsController.selected.debitedaccountId}" actionListener="#{bookofaccountsController.prepareDebitedaccountId}" action="#{mobilePageController.navigateWithHistory}">  
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="pm:AccountEditPage"/>
+                        </p:menuitem>
+                        <p:menuitem value="#{myBundle.BookofaccountsMenuItem_transactionId}" icon="ui-icon-search" update=":AccountprocesstransactionEditPage:AccountprocesstransactionEditForm" disabled="#{empty bookofaccountsController.selected.transactionId}" actionListener="#{bookofaccountsController.prepareTransactionId}" action="#{mobilePageController.navigateWithHistory}">  
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="pm:AccountprocesstransactionEditPage"/>
+                        </p:menuitem>
+                        <p:menuitem value="#{myBundle.BookofaccountsMenuItem_userId}" icon="ui-icon-search" update=":SystemuserEditPage:SystemuserEditForm" disabled="#{empty bookofaccountsController.selected.userId}" actionListener="#{bookofaccountsController.prepareUserId}" action="#{mobilePageController.navigateWithHistory}">  
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="pm:SystemuserEditPage"/>
+                        </p:menuitem>
+                    </p:menu>
+                </p:overlayPanel>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

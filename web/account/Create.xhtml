@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AccountCreateDlg" widgetVar="AccountCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateAccountTitle}" closeOnEscape="true">
+
+            <h:form id="AccountCreateForm">
+
+                <h:panelGroup id="display" rendered="#{accountController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{accountController.selected.id}" title="#{myBundle.CreateAccountTitle_id}" required="true" requiredMessage="#{myBundle.CreateAccountRequiredMessage_id}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{accountController.selected.address}" title="#{myBundle.CreateAccountTitle_address}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_balance}" for="balance" />
+                        <p:inputText id="balance" value="#{accountController.selected.balance}" title="#{myBundle.CreateAccountTitle_balance}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{accountController.selected.code}" title="#{myBundle.CreateAccountTitle_code}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_contacts}" for="contacts" />
+                        <p:inputText id="contacts" value="#{accountController.selected.contacts}" title="#{myBundle.CreateAccountTitle_contacts}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_datecreated}" for="datecreated" />
+                        <p:calendar id="datecreated" pattern="MM/dd/yyyy" value="#{accountController.selected.datecreated}" title="#{myBundle.CreateAccountTitle_datecreated}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{accountController.selected.description}" title="#{myBundle.CreateAccountTitle_description}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{accountController.selected.email}" title="#{myBundle.CreateAccountTitle_email}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_mobile}" for="mobile" />
+                        <p:inputText id="mobile" value="#{accountController.selected.mobile}" title="#{myBundle.CreateAccountTitle_mobile}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{accountController.selected.name}" title="#{myBundle.CreateAccountTitle_name}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_sex}" for="sex" />
+                        <p:inputText id="sex" value="#{accountController.selected.sex}" title="#{myBundle.CreateAccountTitle_sex}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_wfield1}" for="wfield1" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield1" value="#{accountController.selected.wfield1}" title="#{myBundle.CreateAccountTitle_wfield1}" />
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_wfield2}" for="wfield2" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield2" value="#{accountController.selected.wfield2}" title="#{myBundle.CreateAccountTitle_wfield2}" />
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_wfield3}" for="wfield3" />
+                        <p:inputText id="wfield3" value="#{accountController.selected.wfield3}" title="#{myBundle.CreateAccountTitle_wfield3}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAccountLabel_wfield4}" for="wfield4" />
+                        <p:inputText id="wfield4" value="#{accountController.selected.wfield4}" title="#{myBundle.CreateAccountTitle_wfield4}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{accountController.saveNew}" value="#{myBundle.Save}" update="display,:AccountListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AccountCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('AccountCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

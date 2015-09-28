@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="SmsmessageListForm">
+
+        <p:panel header="#{myBundle.ListSmsmessageTitle}">
+            <p:contextMenu id="SmsmessageDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('SmsmessageListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('SmsmessageListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('SmsmessageListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('SmsmessageListForm:deleteButton').click();" icon="ui-icon-trash"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{smsmessageController.items}"
+                         var="item"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{smsmessageController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:SmsmessageDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:SmsmessageDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('SmsmessageListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListSmsmessageTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.dwfield1}" filterBy="#{item.dwfield1}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListSmsmessageTitle_dwfield1}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.dwfield1}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.dwfield2}" filterBy="#{item.dwfield2}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListSmsmessageTitle_dwfield2}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.dwfield2}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.dwfield3}" filterBy="#{item.dwfield3}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListSmsmessageTitle_dwfield3}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.dwfield3}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.message}" filterBy="#{item.message}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListSmsmessageTitle_message}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.message}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.recipient}" filterBy="#{item.recipient}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListSmsmessageTitle_recipient}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.recipient}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.status}" filterBy="#{item.status}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListSmsmessageTitle_status}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.status}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.wfield1}" filterBy="#{item.wfield1}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListSmsmessageTitle_wfield1}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.wfield1}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.wfield2}" filterBy="#{item.wfield2}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListSmsmessageTitle_wfield2}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.wfield2}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.wfield3}" filterBy="#{item.wfield3}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListSmsmessageTitle_wfield3}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.wfield3}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{smsmessageController.prepareCreate}" update=":SmsmessageCreateForm" oncomplete="PF('SmsmessageCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":SmsmessageViewForm" oncomplete="PF('SmsmessageViewDialog').show()" disabled="#{empty smsmessageController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":SmsmessageEditForm" oncomplete="PF('SmsmessageEditDialog').show()" disabled="#{empty smsmessageController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{smsmessageController.delete}" update=":growl,datalist" disabled="#{empty smsmessageController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

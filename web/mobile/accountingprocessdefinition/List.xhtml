@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="AccountingprocessdefinitionListPage">
+        <pm:header title="#{myBundle.ListAccountingprocessdefinitionTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":AccountingprocessdefinitionCreatePage:AccountingprocessdefinitionCreateForm" actionListener="#{accountingprocessdefinitionController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:AccountingprocessdefinitionCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="AccountingprocessdefinitionListForm">
+
+                <p:dataTable id="datalist"
+                             value="#{accountingprocessdefinitionController.items}"
+                             var="item"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             selectionMode="single"
+                             selection="#{accountingprocessdefinitionController.selected}"
+                             reflow="true">
+
+                    <p:ajax event="rowSelect"   update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel"/>
+                    <p:ajax event="rowUnselect" update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel"/>
+                    <p:ajax event="swipeleft"   oncomplete="document.getElementById('AccountingprocessdefinitionListPage:AccountingprocessdefinitionListForm:deleteButton').click();"/>
+                    <p:ajax event="tap"         oncomplete="document.getElementById('AccountingprocessdefinitionListPage:AccountingprocessdefinitionListForm:editButton').click();"/>
+                    <p:ajax event="taphold"     oncomplete="document.getElementById('AccountingprocessdefinitionListPage:AccountingprocessdefinitionListForm:navigationMenuButton').click();"/>
+
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{myBundle.ListAccountingprocessdefinitionTitle_id}">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.datecreated}" filterBy="#{item.datecreated}" headerText="#{myBundle.ListAccountingprocessdefinitionTitle_datecreated}">
+                        <h:outputText value="#{item.datecreated}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.description}" filterBy="#{item.description}" headerText="#{myBundle.ListAccountingprocessdefinitionTitle_description}">
+                        <h:outputText value="#{item.description}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.name}" filterBy="#{item.name}" headerText="#{myBundle.ListAccountingprocessdefinitionTitle_name}">
+                        <h:outputText value="#{item.name}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.wfield1}" filterBy="#{item.wfield1}" headerText="#{myBundle.ListAccountingprocessdefinitionTitle_wfield1}">
+                        <h:outputText value="#{item.wfield1}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.wfield2}" filterBy="#{item.wfield2}" headerText="#{myBundle.ListAccountingprocessdefinitionTitle_wfield2}">
+                        <h:outputText value="#{item.wfield2}"/>
+                    </p:column>
+
+                    <!--
+                                        <p:column sortBy="#{item.wfield3}" filterBy="#{item.wfield3}" headerText="#{myBundle.ListAccountingprocessdefinitionTitle_wfield3}">
+                                            <h:outputText value="#{item.wfield3}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.wfield4}" filterBy="#{item.wfield4}" headerText="#{myBundle.ListAccountingprocessdefinitionTitle_wfield4}">
+                                            <h:outputText value="#{item.wfield4}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.wfield5}" filterBy="#{item.wfield5}" headerText="#{myBundle.ListAccountingprocessdefinitionTitle_wfield5}">
+                                            <h:outputText value="#{item.wfield5}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.wfield6}" filterBy="#{item.wfield6}" headerText="#{myBundle.ListAccountingprocessdefinitionTitle_wfield6}">
+                                            <h:outputText value="#{item.wfield6}"/>
+                                        </p:column>
+                    -->
+                </p:dataTable>
+                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":AccountingprocessdefinitionEditPage:AccountingprocessdefinitionEditForm" disabled="#{empty accountingprocessdefinitionController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:AccountingprocessdefinitionEditPage')}"/>
+                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{accountingprocessdefinitionController.delete}" update=":growl,datalist" disabled="#{empty accountingprocessdefinitionController.selected}">
+                    <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                </p:commandButton>
+                <p:commandButton id="navigationMenuButton" style="visibility: hidden;" value="#{myBundle.Menu}" disabled="#{empty accountingprocessdefinitionController.selected}"/>
+
+                <p:overlayPanel id="navigationMenuPanel" for="navigationMenuButton" at="right" showEffect="overlay">
+                    <h2>#{myBundle.AccountingprocessdefinitionHeading} #{myBundle.Menu}</h2>
+                    <p:menu>
+                        <p:menuitem value="#{myBundle.AccountingprocessdefinitionMenuItem_accountprocesstransactionList}" icon="ui-icon-search"  action="#{mobilePageController.navigateWithHistory}" disabled="#{empty accountingprocessdefinitionController.selected.accountprocesstransactionList}" ajax="false">
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="#{accountingprocessdefinitionController.navigateAccountprocesstransactionList()}"/>
+                        </p:menuitem>  
+                    </p:menu>
+                </p:overlayPanel>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="AccountprocesstransactionListForm">
+
+        <p:panel header="#{myBundle.ListAccountprocesstransactionTitle}">
+            <p:contextMenu id="AccountprocesstransactionDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('AccountprocesstransactionListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('AccountprocesstransactionListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('AccountprocesstransactionListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('AccountprocesstransactionListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.AccountprocesstransactionMenuItem_accounttransactiondefinitionList}" icon="ui-icon-search"  action="#{accountprocesstransactionController.navigateAccounttransactiondefinitionList}" disabled="#{empty accountprocesstransactionController.selected.accounttransactiondefinitionList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.AccountprocesstransactionMenuItem_bookofaccountsList}" icon="ui-icon-search"  action="#{accountprocesstransactionController.navigateBookofaccountsList}" disabled="#{empty accountprocesstransactionController.selected.bookofaccountsList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.AccountprocesstransactionMenuItem_accountprocessdefinitionId}" icon="ui-icon-search"  actionListener="#{accountprocesstransactionController.prepareAccountprocessdefinitionId}" update=":AccountingprocessdefinitionViewForm" oncomplete="PF('AccountingprocessdefinitionViewDialog').show()" disabled="#{empty accountprocesstransactionController.selected.accountprocessdefinitionId}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{accountprocesstransactionController.items}"
+                         var="item"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{accountprocesstransactionController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:AccountprocesstransactionDataTableContextMenu" listener="#{accountprocesstransactionController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:AccountprocesstransactionDataTableContextMenu" listener="#{accountprocesstransactionController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{accountprocesstransactionController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('AccountprocesstransactionListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountprocesstransactionTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.wfield1}" filterBy="#{item.wfield1}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountprocesstransactionTitle_wfield1}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.wfield1}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.wfield2}" filterBy="#{item.wfield2}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountprocesstransactionTitle_wfield2}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.wfield2}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.wfield3}" filterBy="#{item.wfield3}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountprocesstransactionTitle_wfield3}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.wfield3}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.wfield4}" filterBy="#{item.wfield4}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountprocesstransactionTitle_wfield4}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.wfield4}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.wfield5}" filterBy="#{item.wfield5}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountprocesstransactionTitle_wfield5}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.wfield5}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.wfield6}" filterBy="#{item.wfield6}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountprocesstransactionTitle_wfield6}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.wfield6}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.accountprocessdefinitionId.description}" filterBy="#{item.accountprocessdefinitionId.description}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountprocesstransactionTitle_accountprocessdefinitionId}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.accountprocessdefinitionId.description}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{accountprocesstransactionController.prepareCreate}" update=":AccountprocesstransactionCreateForm" oncomplete="PF('AccountprocesstransactionCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":AccountprocesstransactionViewForm" oncomplete="PF('AccountprocesstransactionViewDialog').show()" disabled="#{empty accountprocesstransactionController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":AccountprocesstransactionEditForm" oncomplete="PF('AccountprocesstransactionEditDialog').show()" disabled="#{empty accountprocesstransactionController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{accountprocesstransactionController.delete}" update=":growl,datalist" disabled="#{empty accountprocesstransactionController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

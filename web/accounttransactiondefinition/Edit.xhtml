@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="AccounttransactiondefinitionEditDlg" widgetVar="AccounttransactiondefinitionEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditAccounttransactiondefinitionTitle}" closeOnEscape="true">
+
+            <h:form id="AccounttransactiondefinitionEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{accounttransactiondefinitionController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditAccounttransactiondefinitionLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{accounttransactiondefinitionController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditAccounttransactiondefinitionLabel_amount}" for="amount" />
+                        <p:inputText id="amount" value="#{accounttransactiondefinitionController.selected.amount}" title="#{myBundle.EditAccounttransactiondefinitionTitle_amount}"/>
+
+                        <p:outputLabel value="#{myBundle.EditAccounttransactiondefinitionLabel_datecreated}" for="datecreated" />
+                        <p:calendar id="datecreated" pattern="MM/dd/yyyy" value="#{accounttransactiondefinitionController.selected.datecreated}" title="#{myBundle.EditAccounttransactiondefinitionTitle_datecreated}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditAccounttransactiondefinitionLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{accounttransactiondefinitionController.selected.description}" title="#{myBundle.EditAccounttransactiondefinitionTitle_description}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditAccounttransactiondefinitionLabel_nameoftransactions}" for="nameoftransactions" />
+                        <p:inputText id="nameoftransactions" value="#{accounttransactiondefinitionController.selected.nameoftransactions}" title="#{myBundle.EditAccounttransactiondefinitionTitle_nameoftransactions}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditAccounttransactiondefinitionLabel_wfield1}" for="wfield1" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield1" value="#{accounttransactiondefinitionController.selected.wfield1}" title="#{myBundle.EditAccounttransactiondefinitionTitle_wfield1}" />
+
+                        <p:outputLabel value="#{myBundle.EditAccounttransactiondefinitionLabel_wfield2}" for="wfield2" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield2" value="#{accounttransactiondefinitionController.selected.wfield2}" title="#{myBundle.EditAccounttransactiondefinitionTitle_wfield2}" />
+
+                        <p:outputLabel value="#{myBundle.EditAccounttransactiondefinitionLabel_wfield3}" for="wfield3" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield3" value="#{accounttransactiondefinitionController.selected.wfield3}" title="#{myBundle.EditAccounttransactiondefinitionTitle_wfield3}" />
+
+                        <p:outputLabel value="#{myBundle.EditAccounttransactiondefinitionLabel_wfield4}" for="wfield4" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield4" value="#{accounttransactiondefinitionController.selected.wfield4}" title="#{myBundle.EditAccounttransactiondefinitionTitle_wfield4}" />
+
+                        <p:outputLabel value="#{myBundle.EditAccounttransactiondefinitionLabel_wfield5}" for="wfield5" />
+                        <p:inputText id="wfield5" value="#{accounttransactiondefinitionController.selected.wfield5}" title="#{myBundle.EditAccounttransactiondefinitionTitle_wfield5}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditAccounttransactiondefinitionLabel_wfield6}" for="wfield6" />
+                        <p:inputText id="wfield6" value="#{accounttransactiondefinitionController.selected.wfield6}" title="#{myBundle.EditAccounttransactiondefinitionTitle_wfield6}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditAccounttransactiondefinitionLabel_accountprocesstransactionId}" for="accountprocesstransactionId" />
+                        <p:selectOneMenu id="accountprocesstransactionId" value="#{accounttransactiondefinitionController.selected.accountprocesstransactionId}"  converter="accountprocesstransactionConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{accountprocesstransactionController.items}"
+                                           var="accountprocesstransactionIdItem"
+                                           itemValue="#{accountprocesstransactionIdItem}"
+                                           itemLabel="#{accountprocesstransactionIdItem.id.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditAccounttransactiondefinitionLabel_creditaccountId}" for="creditaccountId" />
+                        <p:selectOneMenu id="creditaccountId" value="#{accounttransactiondefinitionController.selected.creditaccountId}"  converter="accountConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{accountController.items}"
+                                           var="creditaccountIdItem"
+                                           itemValue="#{creditaccountIdItem}"
+                                           itemLabel="#{creditaccountIdItem.description.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditAccounttransactiondefinitionLabel_debitaccountId}" for="debitaccountId" />
+                        <p:selectOneMenu id="debitaccountId" value="#{accounttransactiondefinitionController.selected.debitaccountId}"  converter="accountConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{accountController.items}"
+                                           var="debitaccountIdItem"
+                                           itemValue="#{debitaccountIdItem}"
+                                           itemLabel="#{debitaccountIdItem.description.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{accounttransactiondefinitionController.save}" value="#{myBundle.Save}" update="display,:AccounttransactiondefinitionListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AccounttransactiondefinitionEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('AccounttransactiondefinitionEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="AccountprocesstransactionViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewAccountprocesstransactionTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:AccountprocesstransactionListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="AccountprocesstransactionViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{accountprocesstransactionController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountprocesstransactionLabel_id}"/>
+                            <h:outputText value="#{accountprocesstransactionController.selected.id}" title="#{myBundle.ViewAccountprocesstransactionTitle_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountprocesstransactionLabel_wfield1}"/>
+                            <h:outputText value="#{accountprocesstransactionController.selected.wfield1}" title="#{myBundle.ViewAccountprocesstransactionTitle_wfield1}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountprocesstransactionLabel_wfield2}"/>
+                            <h:outputText value="#{accountprocesstransactionController.selected.wfield2}" title="#{myBundle.ViewAccountprocesstransactionTitle_wfield2}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountprocesstransactionLabel_wfield3}"/>
+                            <h:outputText value="#{accountprocesstransactionController.selected.wfield3}" title="#{myBundle.ViewAccountprocesstransactionTitle_wfield3}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountprocesstransactionLabel_wfield4}"/>
+                            <h:outputText value="#{accountprocesstransactionController.selected.wfield4}" title="#{myBundle.ViewAccountprocesstransactionTitle_wfield4}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountprocesstransactionLabel_wfield5}"/>
+                            <h:outputText value="#{accountprocesstransactionController.selected.wfield5}" title="#{myBundle.ViewAccountprocesstransactionTitle_wfield5}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountprocesstransactionLabel_wfield6}"/>
+                            <h:outputText value="#{accountprocesstransactionController.selected.wfield6}" title="#{myBundle.ViewAccountprocesstransactionTitle_wfield6}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountprocesstransactionLabel_accountprocessdefinitionId}"/>
+                            <h:outputText value="#{accountprocesstransactionController.selected.accountprocessdefinitionId.description}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

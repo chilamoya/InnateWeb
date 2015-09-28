@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="SystemuserCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateSystemuserTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:SystemuserListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="SystemuserCreateForm">
+
+                <h:panelGroup id="display" rendered="#{systemuserController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSystemuserLabel_id}" for="id" />
+                            <p:inputText id="id" value="#{systemuserController.selected.id}" title="#{myBundle.CreateSystemuserTitle_id}" required="true" requiredMessage="#{myBundle.CreateSystemuserRequiredMessage_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSystemuserLabel_cellphonenumber}" for="cellphonenumber" />
+                            <p:inputText id="cellphonenumber" value="#{systemuserController.selected.cellphonenumber}" title="#{myBundle.CreateSystemuserTitle_cellphonenumber}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSystemuserLabel_email}" for="email" />
+                            <p:inputText id="email" value="#{systemuserController.selected.email}" title="#{myBundle.CreateSystemuserTitle_email}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSystemuserLabel_fullname}" for="fullname" />
+                            <p:inputText id="fullname" value="#{systemuserController.selected.fullname}" title="#{myBundle.CreateSystemuserTitle_fullname}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSystemuserLabel_password}" for="password" />
+                            <p:inputText id="password" value="#{systemuserController.selected.password}" title="#{myBundle.CreateSystemuserTitle_password}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateSystemuserLabel_username}" for="username" />
+                            <p:inputText id="username" value="#{systemuserController.selected.username}" title="#{myBundle.CreateSystemuserTitle_username}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{systemuserController.saveNew}" value="#{myBundle.Save}" update="display,:SystemuserListPage:SystemuserListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:SystemuserListPage')}">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StockViewDlg" widgetVar="StockViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewStockTitle}" closeOnEscape="true">
+
+            <h:form id="StockViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{stockController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewStockLabel_id}"/>
+                        <h:outputText value="#{stockController.selected.id}" title="#{myBundle.ViewStockTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewStockLabel_code}"/>
+                        <h:outputText value="#{stockController.selected.code}" title="#{myBundle.ViewStockTitle_code}"/>
+
+                        <h:outputText value="#{myBundle.ViewStockLabel_description}"/>
+                        <h:outputText value="#{stockController.selected.description}" title="#{myBundle.ViewStockTitle_description}"/>
+
+                        <h:outputText value="#{myBundle.ViewStockLabel_imagepath}"/>
+                        <h:outputText value="#{stockController.selected.imagepath}" title="#{myBundle.ViewStockTitle_imagepath}"/>
+
+                        <h:outputText value="#{myBundle.ViewStockLabel_name}"/>
+                        <h:outputText value="#{stockController.selected.name}" title="#{myBundle.ViewStockTitle_name}"/>
+
+                        <h:outputText value="#{myBundle.ViewStockLabel_price}"/>
+                        <h:outputText value="#{stockController.selected.price}" title="#{myBundle.ViewStockTitle_price}"/>
+
+                        <h:outputText value="#{myBundle.ViewStockLabel_quantity}"/>
+                        <h:outputText value="#{stockController.selected.quantity}" title="#{myBundle.ViewStockTitle_quantity}"/>
+
+                        <h:outputText value="#{myBundle.ViewStockLabel_wfield1}"/>
+                        <h:outputText value="#{stockController.selected.wfield1}" title="#{myBundle.ViewStockTitle_wfield1}"/>
+
+                        <h:outputText value="#{myBundle.ViewStockLabel_wfield2}"/>
+                        <h:outputText value="#{stockController.selected.wfield2}" title="#{myBundle.ViewStockTitle_wfield2}"/>
+
+                        <h:outputText value="#{myBundle.ViewStockLabel_wfield3}"/>
+                        <h:outputText value="#{stockController.selected.wfield3}" title="#{myBundle.ViewStockTitle_wfield3}"/>
+
+                        <h:outputText value="#{myBundle.ViewStockLabel_wfield4}"/>
+                        <h:outputText value="#{stockController.selected.wfield4}" title="#{myBundle.ViewStockTitle_wfield4}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('StockViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

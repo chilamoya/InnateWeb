@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SystemuserViewDlg" widgetVar="SystemuserViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewSystemuserTitle}" closeOnEscape="true">
+
+            <h:form id="SystemuserViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{systemuserController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewSystemuserLabel_id}"/>
+                        <h:outputText value="#{systemuserController.selected.id}" title="#{myBundle.ViewSystemuserTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewSystemuserLabel_cellphonenumber}"/>
+                        <h:outputText value="#{systemuserController.selected.cellphonenumber}" title="#{myBundle.ViewSystemuserTitle_cellphonenumber}"/>
+
+                        <h:outputText value="#{myBundle.ViewSystemuserLabel_email}"/>
+                        <h:outputText value="#{systemuserController.selected.email}" title="#{myBundle.ViewSystemuserTitle_email}"/>
+
+                        <h:outputText value="#{myBundle.ViewSystemuserLabel_fullname}"/>
+                        <h:outputText value="#{systemuserController.selected.fullname}" title="#{myBundle.ViewSystemuserTitle_fullname}"/>
+
+                        <h:outputText value="#{myBundle.ViewSystemuserLabel_password}"/>
+                        <h:outputText value="#{systemuserController.selected.password}" title="#{myBundle.ViewSystemuserTitle_password}"/>
+
+                        <h:outputText value="#{myBundle.ViewSystemuserLabel_username}"/>
+                        <h:outputText value="#{systemuserController.selected.username}" title="#{myBundle.ViewSystemuserTitle_username}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('SystemuserViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AccounttransactiondefinitionViewDlg" widgetVar="AccounttransactiondefinitionViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewAccounttransactiondefinitionTitle}" closeOnEscape="true">
+
+            <h:form id="AccounttransactiondefinitionViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{accounttransactiondefinitionController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewAccounttransactiondefinitionLabel_id}"/>
+                        <h:outputText value="#{accounttransactiondefinitionController.selected.id}" title="#{myBundle.ViewAccounttransactiondefinitionTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccounttransactiondefinitionLabel_amount}"/>
+                        <h:outputText value="#{accounttransactiondefinitionController.selected.amount}" title="#{myBundle.ViewAccounttransactiondefinitionTitle_amount}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccounttransactiondefinitionLabel_datecreated}"/>
+                        <h:outputText value="#{accounttransactiondefinitionController.selected.datecreated}" title="#{myBundle.ViewAccounttransactiondefinitionTitle_datecreated}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewAccounttransactiondefinitionLabel_description}"/>
+                        <h:outputText value="#{accounttransactiondefinitionController.selected.description}" title="#{myBundle.ViewAccounttransactiondefinitionTitle_description}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccounttransactiondefinitionLabel_nameoftransactions}"/>
+                        <h:outputText value="#{accounttransactiondefinitionController.selected.nameoftransactions}" title="#{myBundle.ViewAccounttransactiondefinitionTitle_nameoftransactions}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccounttransactiondefinitionLabel_wfield1}"/>
+                        <h:outputText value="#{accounttransactiondefinitionController.selected.wfield1}" title="#{myBundle.ViewAccounttransactiondefinitionTitle_wfield1}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccounttransactiondefinitionLabel_wfield2}"/>
+                        <h:outputText value="#{accounttransactiondefinitionController.selected.wfield2}" title="#{myBundle.ViewAccounttransactiondefinitionTitle_wfield2}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccounttransactiondefinitionLabel_wfield3}"/>
+                        <h:outputText value="#{accounttransactiondefinitionController.selected.wfield3}" title="#{myBundle.ViewAccounttransactiondefinitionTitle_wfield3}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccounttransactiondefinitionLabel_wfield4}"/>
+                        <h:outputText value="#{accounttransactiondefinitionController.selected.wfield4}" title="#{myBundle.ViewAccounttransactiondefinitionTitle_wfield4}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccounttransactiondefinitionLabel_wfield5}"/>
+                        <h:outputText value="#{accounttransactiondefinitionController.selected.wfield5}" title="#{myBundle.ViewAccounttransactiondefinitionTitle_wfield5}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccounttransactiondefinitionLabel_wfield6}"/>
+                        <h:outputText value="#{accounttransactiondefinitionController.selected.wfield6}" title="#{myBundle.ViewAccounttransactiondefinitionTitle_wfield6}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccounttransactiondefinitionLabel_accountprocesstransactionId}"/>
+                        <h:outputText value="#{accounttransactiondefinitionController.selected.accountprocesstransactionId.id}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccounttransactiondefinitionLabel_creditaccountId}"/>
+                        <h:outputText value="#{accounttransactiondefinitionController.selected.creditaccountId.description}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccounttransactiondefinitionLabel_debitaccountId}"/>
+                        <h:outputText value="#{accounttransactiondefinitionController.selected.debitaccountId.description}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('AccounttransactiondefinitionViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

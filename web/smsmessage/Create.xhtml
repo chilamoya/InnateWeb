@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SmsmessageCreateDlg" widgetVar="SmsmessageCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateSmsmessageTitle}" closeOnEscape="true">
+
+            <h:form id="SmsmessageCreateForm">
+
+                <h:panelGroup id="display" rendered="#{smsmessageController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{smsmessageController.selected.id}" title="#{myBundle.CreateSmsmessageTitle_id}" required="true" requiredMessage="#{myBundle.CreateSmsmessageRequiredMessage_id}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_dwfield1}" for="dwfield1" />
+                        <p:inputText id="dwfield1" value="#{smsmessageController.selected.dwfield1}" title="#{myBundle.CreateSmsmessageTitle_dwfield1}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_dwfield2}" for="dwfield2" />
+                        <p:inputText id="dwfield2" value="#{smsmessageController.selected.dwfield2}" title="#{myBundle.CreateSmsmessageTitle_dwfield2}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_dwfield3}" for="dwfield3" />
+                        <p:inputText id="dwfield3" value="#{smsmessageController.selected.dwfield3}" title="#{myBundle.CreateSmsmessageTitle_dwfield3}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_message}" for="message" />
+                        <p:inputText id="message" value="#{smsmessageController.selected.message}" title="#{myBundle.CreateSmsmessageTitle_message}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_recipient}" for="recipient" />
+                        <p:inputText id="recipient" value="#{smsmessageController.selected.recipient}" title="#{myBundle.CreateSmsmessageTitle_recipient}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{smsmessageController.selected.status}" title="#{myBundle.CreateSmsmessageTitle_status}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_wfield1}" for="wfield1" />
+                        <p:inputText id="wfield1" value="#{smsmessageController.selected.wfield1}" title="#{myBundle.CreateSmsmessageTitle_wfield1}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_wfield2}" for="wfield2" />
+                        <p:inputText id="wfield2" value="#{smsmessageController.selected.wfield2}" title="#{myBundle.CreateSmsmessageTitle_wfield2}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateSmsmessageLabel_wfield3}" for="wfield3" />
+                        <p:inputText id="wfield3" value="#{smsmessageController.selected.wfield3}" title="#{myBundle.CreateSmsmessageTitle_wfield3}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{smsmessageController.saveNew}" value="#{myBundle.Save}" update="display,:SmsmessageListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('SmsmessageCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('SmsmessageCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

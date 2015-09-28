@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="AccountprocesstransactionListPage">
+        <pm:header title="#{myBundle.ListAccountprocesstransactionTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":AccountprocesstransactionCreatePage:AccountprocesstransactionCreateForm" actionListener="#{accountprocesstransactionController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:AccountprocesstransactionCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="AccountprocesstransactionListForm">
+
+                <p:dataTable id="datalist"
+                             value="#{accountprocesstransactionController.items}"
+                             var="item"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             selectionMode="single"
+                             selection="#{accountprocesstransactionController.selected}"
+                             reflow="true">
+
+                    <p:ajax event="rowSelect"   update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel" listener="#{accountprocesstransactionController.resetParents}"/>
+                    <p:ajax event="rowUnselect" update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel" listener="#{accountprocesstransactionController.resetParents}"/>
+                    <p:ajax event="swipeleft"   oncomplete="document.getElementById('AccountprocesstransactionListPage:AccountprocesstransactionListForm:deleteButton').click();"/>
+                    <p:ajax event="tap"         oncomplete="document.getElementById('AccountprocesstransactionListPage:AccountprocesstransactionListForm:editButton').click();"/>
+                    <p:ajax event="taphold"     oncomplete="document.getElementById('AccountprocesstransactionListPage:AccountprocesstransactionListForm:navigationMenuButton').click();"/>
+
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{myBundle.ListAccountprocesstransactionTitle_id}">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.wfield1}" filterBy="#{item.wfield1}" headerText="#{myBundle.ListAccountprocesstransactionTitle_wfield1}">
+                        <h:outputText value="#{item.wfield1}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.wfield2}" filterBy="#{item.wfield2}" headerText="#{myBundle.ListAccountprocesstransactionTitle_wfield2}">
+                        <h:outputText value="#{item.wfield2}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.wfield3}" filterBy="#{item.wfield3}" headerText="#{myBundle.ListAccountprocesstransactionTitle_wfield3}">
+                        <h:outputText value="#{item.wfield3}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.wfield4}" filterBy="#{item.wfield4}" headerText="#{myBundle.ListAccountprocesstransactionTitle_wfield4}">
+                        <h:outputText value="#{item.wfield4}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.wfield5}" filterBy="#{item.wfield5}" headerText="#{myBundle.ListAccountprocesstransactionTitle_wfield5}">
+                        <h:outputText value="#{item.wfield5}"/>
+                    </p:column>
+
+                    <!--
+                                        <p:column sortBy="#{item.wfield6}" filterBy="#{item.wfield6}" headerText="#{myBundle.ListAccountprocesstransactionTitle_wfield6}">
+                                            <h:outputText value="#{item.wfield6}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.accountprocessdefinitionId.description}" filterBy="#{item.accountprocessdefinitionId.description}" headerText="#{myBundle.ListAccountprocesstransactionTitle_accountprocessdefinitionId}">
+                                            <h:outputText value="#{item.accountprocessdefinitionId.description}"/>
+                                        </p:column>
+                    -->
+                </p:dataTable>
+                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":AccountprocesstransactionEditPage:AccountprocesstransactionEditForm" disabled="#{empty accountprocesstransactionController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:AccountprocesstransactionEditPage')}"/>
+                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{accountprocesstransactionController.delete}" update=":growl,datalist" disabled="#{empty accountprocesstransactionController.selected}">
+                    <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                </p:commandButton>
+                <p:commandButton id="navigationMenuButton" style="visibility: hidden;" value="#{myBundle.Menu}" disabled="#{empty accountprocesstransactionController.selected}"/>
+
+                <p:overlayPanel id="navigationMenuPanel" for="navigationMenuButton" at="right" showEffect="overlay">
+                    <h2>#{myBundle.AccountprocesstransactionHeading} #{myBundle.Menu}</h2>
+                    <p:menu>
+                        <p:menuitem value="#{myBundle.AccountprocesstransactionMenuItem_accounttransactiondefinitionList}" icon="ui-icon-search"  action="#{mobilePageController.navigateWithHistory}" disabled="#{empty accountprocesstransactionController.selected.accounttransactiondefinitionList}" ajax="false">
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="#{accountprocesstransactionController.navigateAccounttransactiondefinitionList()}"/>
+                        </p:menuitem>  
+                        <p:menuitem value="#{myBundle.AccountprocesstransactionMenuItem_bookofaccountsList}" icon="ui-icon-search"  action="#{mobilePageController.navigateWithHistory}" disabled="#{empty accountprocesstransactionController.selected.bookofaccountsList}" ajax="false">
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="#{accountprocesstransactionController.navigateBookofaccountsList()}"/>
+                        </p:menuitem>  
+                        <p:menuitem value="#{myBundle.AccountprocesstransactionMenuItem_accountprocessdefinitionId}" icon="ui-icon-search" update=":AccountingprocessdefinitionEditPage:AccountingprocessdefinitionEditForm" disabled="#{empty accountprocesstransactionController.selected.accountprocessdefinitionId}" actionListener="#{accountprocesstransactionController.prepareAccountprocessdefinitionId}" action="#{mobilePageController.navigateWithHistory}">  
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="pm:AccountingprocessdefinitionEditPage"/>
+                        </p:menuitem>
+                    </p:menu>
+                </p:overlayPanel>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

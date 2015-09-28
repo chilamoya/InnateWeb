@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="SystemuserListPage">
+        <pm:header title="#{myBundle.ListSystemuserTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":SystemuserCreatePage:SystemuserCreateForm" actionListener="#{systemuserController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:SystemuserCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="SystemuserListForm">
+
+                <p:dataTable id="datalist"
+                             value="#{systemuserController.items}"
+                             var="item"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             selectionMode="single"
+                             selection="#{systemuserController.selected}"
+                             reflow="true">
+
+                    <p:ajax event="rowSelect"   update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel"/>
+                    <p:ajax event="rowUnselect" update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel"/>
+                    <p:ajax event="swipeleft"   oncomplete="document.getElementById('SystemuserListPage:SystemuserListForm:deleteButton').click();"/>
+                    <p:ajax event="tap"         oncomplete="document.getElementById('SystemuserListPage:SystemuserListForm:editButton').click();"/>
+                    <p:ajax event="taphold"     oncomplete="document.getElementById('SystemuserListPage:SystemuserListForm:navigationMenuButton').click();"/>
+
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{myBundle.ListSystemuserTitle_id}">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.cellphonenumber}" filterBy="#{item.cellphonenumber}" headerText="#{myBundle.ListSystemuserTitle_cellphonenumber}">
+                        <h:outputText value="#{item.cellphonenumber}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.email}" filterBy="#{item.email}" headerText="#{myBundle.ListSystemuserTitle_email}">
+                        <h:outputText value="#{item.email}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.fullname}" filterBy="#{item.fullname}" headerText="#{myBundle.ListSystemuserTitle_fullname}">
+                        <h:outputText value="#{item.fullname}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.password}" filterBy="#{item.password}" headerText="#{myBundle.ListSystemuserTitle_password}">
+                        <h:outputText value="#{item.password}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.username}" filterBy="#{item.username}" headerText="#{myBundle.ListSystemuserTitle_username}">
+                        <h:outputText value="#{item.username}"/>
+                    </p:column>
+
+                </p:dataTable>
+                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":SystemuserEditPage:SystemuserEditForm" disabled="#{empty systemuserController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:SystemuserEditPage')}"/>
+                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{systemuserController.delete}" update=":growl,datalist" disabled="#{empty systemuserController.selected}">
+                    <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                </p:commandButton>
+                <p:commandButton id="navigationMenuButton" style="visibility: hidden;" value="#{myBundle.Menu}" disabled="#{empty systemuserController.selected}"/>
+
+                <p:overlayPanel id="navigationMenuPanel" for="navigationMenuButton" at="right" showEffect="overlay">
+                    <h2>#{myBundle.SystemuserHeading} #{myBundle.Menu}</h2>
+                    <p:menu>
+                        <p:menuitem value="#{myBundle.SystemuserMenuItem_bookofaccountsList}" icon="ui-icon-search"  action="#{mobilePageController.navigateWithHistory}" disabled="#{empty systemuserController.selected.bookofaccountsList}" ajax="false">
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="#{systemuserController.navigateBookofaccountsList()}"/>
+                        </p:menuitem>  
+                    </p:menu>
+                </p:overlayPanel>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="AccountingprocessdefinitionCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateAccountingprocessdefinitionTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:AccountingprocessdefinitionListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="AccountingprocessdefinitionCreateForm">
+
+                <h:panelGroup id="display" rendered="#{accountingprocessdefinitionController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountingprocessdefinitionLabel_id}" for="id" />
+                            <p:inputText id="id" value="#{accountingprocessdefinitionController.selected.id}" title="#{myBundle.CreateAccountingprocessdefinitionTitle_id}" required="true" requiredMessage="#{myBundle.CreateAccountingprocessdefinitionRequiredMessage_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountingprocessdefinitionLabel_datecreated}" for="datecreated" />
+                            <p:calendar id="datecreated" pattern="MM/dd/yyyy" value="#{accountingprocessdefinitionController.selected.datecreated}" title="#{myBundle.CreateAccountingprocessdefinitionTitle_datecreated}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountingprocessdefinitionLabel_description}" for="description" />
+                            <p:inputText id="description" value="#{accountingprocessdefinitionController.selected.description}" title="#{myBundle.CreateAccountingprocessdefinitionTitle_description}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountingprocessdefinitionLabel_name}" for="name" />
+                            <p:inputText id="name" value="#{accountingprocessdefinitionController.selected.name}" title="#{myBundle.CreateAccountingprocessdefinitionTitle_name}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountingprocessdefinitionLabel_wfield1}" for="wfield1" />
+                            <p:inputTextarea rows="4" cols="30" id="wfield1" value="#{accountingprocessdefinitionController.selected.wfield1}" title="#{myBundle.CreateAccountingprocessdefinitionTitle_wfield1}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountingprocessdefinitionLabel_wfield2}" for="wfield2" />
+                            <p:inputTextarea rows="4" cols="30" id="wfield2" value="#{accountingprocessdefinitionController.selected.wfield2}" title="#{myBundle.CreateAccountingprocessdefinitionTitle_wfield2}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountingprocessdefinitionLabel_wfield3}" for="wfield3" />
+                            <p:inputTextarea rows="4" cols="30" id="wfield3" value="#{accountingprocessdefinitionController.selected.wfield3}" title="#{myBundle.CreateAccountingprocessdefinitionTitle_wfield3}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountingprocessdefinitionLabel_wfield4}" for="wfield4" />
+                            <p:inputTextarea rows="4" cols="30" id="wfield4" value="#{accountingprocessdefinitionController.selected.wfield4}" title="#{myBundle.CreateAccountingprocessdefinitionTitle_wfield4}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountingprocessdefinitionLabel_wfield5}" for="wfield5" />
+                            <p:inputText id="wfield5" value="#{accountingprocessdefinitionController.selected.wfield5}" title="#{myBundle.CreateAccountingprocessdefinitionTitle_wfield5}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountingprocessdefinitionLabel_wfield6}" for="wfield6" />
+                            <p:inputText id="wfield6" value="#{accountingprocessdefinitionController.selected.wfield6}" title="#{myBundle.CreateAccountingprocessdefinitionTitle_wfield6}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{accountingprocessdefinitionController.saveNew}" value="#{myBundle.Save}" update="display,:AccountingprocessdefinitionListPage:AccountingprocessdefinitionListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:AccountingprocessdefinitionListPage')}">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

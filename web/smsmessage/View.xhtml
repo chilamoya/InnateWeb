@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SmsmessageViewDlg" widgetVar="SmsmessageViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewSmsmessageTitle}" closeOnEscape="true">
+
+            <h:form id="SmsmessageViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{smsmessageController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewSmsmessageLabel_id}"/>
+                        <h:outputText value="#{smsmessageController.selected.id}" title="#{myBundle.ViewSmsmessageTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewSmsmessageLabel_dwfield1}"/>
+                        <h:outputText value="#{smsmessageController.selected.dwfield1}" title="#{myBundle.ViewSmsmessageTitle_dwfield1}"/>
+
+                        <h:outputText value="#{myBundle.ViewSmsmessageLabel_dwfield2}"/>
+                        <h:outputText value="#{smsmessageController.selected.dwfield2}" title="#{myBundle.ViewSmsmessageTitle_dwfield2}"/>
+
+                        <h:outputText value="#{myBundle.ViewSmsmessageLabel_dwfield3}"/>
+                        <h:outputText value="#{smsmessageController.selected.dwfield3}" title="#{myBundle.ViewSmsmessageTitle_dwfield3}"/>
+
+                        <h:outputText value="#{myBundle.ViewSmsmessageLabel_message}"/>
+                        <h:outputText value="#{smsmessageController.selected.message}" title="#{myBundle.ViewSmsmessageTitle_message}"/>
+
+                        <h:outputText value="#{myBundle.ViewSmsmessageLabel_recipient}"/>
+                        <h:outputText value="#{smsmessageController.selected.recipient}" title="#{myBundle.ViewSmsmessageTitle_recipient}"/>
+
+                        <h:outputText value="#{myBundle.ViewSmsmessageLabel_status}"/>
+                        <h:outputText value="#{smsmessageController.selected.status}" title="#{myBundle.ViewSmsmessageTitle_status}"/>
+
+                        <h:outputText value="#{myBundle.ViewSmsmessageLabel_wfield1}"/>
+                        <h:outputText value="#{smsmessageController.selected.wfield1}" title="#{myBundle.ViewSmsmessageTitle_wfield1}"/>
+
+                        <h:outputText value="#{myBundle.ViewSmsmessageLabel_wfield2}"/>
+                        <h:outputText value="#{smsmessageController.selected.wfield2}" title="#{myBundle.ViewSmsmessageTitle_wfield2}"/>
+
+                        <h:outputText value="#{myBundle.ViewSmsmessageLabel_wfield3}"/>
+                        <h:outputText value="#{smsmessageController.selected.wfield3}" title="#{myBundle.ViewSmsmessageTitle_wfield3}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('SmsmessageViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

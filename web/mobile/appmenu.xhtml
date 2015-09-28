@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <h:form id="menuForm">
+        <p:menu>
+            <p:submenu label="#{myBundle.Maintenance}">
+                <p:menuitem value="#{myBundle.AccountHeading}..." outcome="/mobile/account/index" />
+                <p:menuitem value="#{myBundle.AccountingprocessdefinitionHeading}..." outcome="/mobile/accountingprocessdefinition/index" />
+                <p:menuitem value="#{myBundle.AccountprocesstransactionHeading}..." outcome="/mobile/accountprocesstransaction/index" />
+                <p:menuitem value="#{myBundle.AccounttransactiondefinitionHeading}..." outcome="/mobile/accounttransactiondefinition/index" />
+                <p:menuitem value="#{myBundle.BookofaccountsHeading}..." outcome="/mobile/bookofaccounts/index" />
+                <p:menuitem value="#{myBundle.CompanyHeading}..." outcome="/mobile/company/index" />
+                <p:menuitem value="#{myBundle.EmailmessageHeading}..." outcome="/mobile/emailmessage/index" />
+                <p:menuitem value="#{myBundle.SmsmessageHeading}..." outcome="/mobile/smsmessage/index" />
+                <p:menuitem value="#{myBundle.StockHeading}..." outcome="/mobile/stock/index" />
+                <p:menuitem value="#{myBundle.SystemuserHeading}..." outcome="/mobile/systemuser/index" />
+            </p:submenu>
+            <p:menuitem value="#{myBundle.FullApp}" outcome="/index" icon="ui-icon-home"/>
+        </p:menu>
+    </h:form>
+</ui:composition>

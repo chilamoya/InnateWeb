@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="BookofaccountsEditDlg" widgetVar="BookofaccountsEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditBookofaccountsTitle}" closeOnEscape="true">
+
+            <h:form id="BookofaccountsEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{bookofaccountsController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditBookofaccountsLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{bookofaccountsController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditBookofaccountsLabel_balance}" for="balance" />
+                        <p:inputText id="balance" value="#{bookofaccountsController.selected.balance}" title="#{myBundle.EditBookofaccountsTitle_balance}"/>
+
+                        <p:outputLabel value="#{myBundle.EditBookofaccountsLabel_createdate}" for="createdate" />
+                        <p:calendar id="createdate" pattern="MM/dd/yyyy" value="#{bookofaccountsController.selected.createdate}" title="#{myBundle.EditBookofaccountsTitle_createdate}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditBookofaccountsLabel_currentbalance}" for="currentbalance" />
+                        <p:inputText id="currentbalance" value="#{bookofaccountsController.selected.currentbalance}" title="#{myBundle.EditBookofaccountsTitle_currentbalance}"/>
+
+                        <p:outputLabel value="#{myBundle.EditBookofaccountsLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{bookofaccountsController.selected.description}" title="#{myBundle.EditBookofaccountsTitle_description}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditBookofaccountsLabel_erpmodule}" for="erpmodule" />
+                        <p:inputText id="erpmodule" value="#{bookofaccountsController.selected.erpmodule}" title="#{myBundle.EditBookofaccountsTitle_erpmodule}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditBookofaccountsLabel_rawdata}" for="rawdata" />
+                        <p:inputTextarea rows="4" cols="30" id="rawdata" value="#{bookofaccountsController.selected.rawdata}" title="#{myBundle.EditBookofaccountsTitle_rawdata}" />
+
+                        <p:outputLabel value="#{myBundle.EditBookofaccountsLabel_transactiondate}" for="transactiondate" />
+                        <p:calendar id="transactiondate" pattern="MM/dd/yyyy" value="#{bookofaccountsController.selected.transactiondate}" title="#{myBundle.EditBookofaccountsTitle_transactiondate}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditBookofaccountsLabel_creditedaccountId}" for="creditedaccountId" />
+                        <p:selectOneMenu id="creditedaccountId" value="#{bookofaccountsController.selected.creditedaccountId}"  converter="accountConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{accountController.items}"
+                                           var="creditedaccountIdItem"
+                                           itemValue="#{creditedaccountIdItem}"
+                                           itemLabel="#{creditedaccountIdItem.description.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditBookofaccountsLabel_debitedaccountId}" for="debitedaccountId" />
+                        <p:selectOneMenu id="debitedaccountId" value="#{bookofaccountsController.selected.debitedaccountId}"  converter="accountConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{accountController.items}"
+                                           var="debitedaccountIdItem"
+                                           itemValue="#{debitedaccountIdItem}"
+                                           itemLabel="#{debitedaccountIdItem.description.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditBookofaccountsLabel_transactionId}" for="transactionId" />
+                        <p:selectOneMenu id="transactionId" value="#{bookofaccountsController.selected.transactionId}"  converter="accountprocesstransactionConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{accountprocesstransactionController.items}"
+                                           var="transactionIdItem"
+                                           itemValue="#{transactionIdItem}"
+                                           itemLabel="#{transactionIdItem.id.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditBookofaccountsLabel_userId}" for="userId" />
+                        <p:selectOneMenu id="userId" value="#{bookofaccountsController.selected.userId}"  converter="systemuserConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{systemuserController.items}"
+                                           var="userIdItem"
+                                           itemValue="#{userIdItem}"
+                                           itemLabel="#{userIdItem.fullname.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{bookofaccountsController.save}" value="#{myBundle.Save}" update="display,:BookofaccountsListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('BookofaccountsEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('BookofaccountsEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

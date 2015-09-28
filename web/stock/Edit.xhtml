@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="StockEditDlg" widgetVar="StockEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditStockTitle}" closeOnEscape="true">
+
+            <h:form id="StockEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{stockController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditStockLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{stockController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditStockLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{stockController.selected.code}" title="#{myBundle.EditStockTitle_code}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditStockLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{stockController.selected.description}" title="#{myBundle.EditStockTitle_description}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditStockLabel_imagepath}" for="imagepath" />
+                        <p:inputText id="imagepath" value="#{stockController.selected.imagepath}" title="#{myBundle.EditStockTitle_imagepath}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditStockLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{stockController.selected.name}" title="#{myBundle.EditStockTitle_name}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditStockLabel_price}" for="price" />
+                        <p:inputText id="price" value="#{stockController.selected.price}" title="#{myBundle.EditStockTitle_price}"/>
+
+                        <p:outputLabel value="#{myBundle.EditStockLabel_quantity}" for="quantity" />
+                        <p:inputText id="quantity" value="#{stockController.selected.quantity}" title="#{myBundle.EditStockTitle_quantity}"/>
+
+                        <p:outputLabel value="#{myBundle.EditStockLabel_wfield1}" for="wfield1" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield1" value="#{stockController.selected.wfield1}" title="#{myBundle.EditStockTitle_wfield1}" />
+
+                        <p:outputLabel value="#{myBundle.EditStockLabel_wfield2}" for="wfield2" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield2" value="#{stockController.selected.wfield2}" title="#{myBundle.EditStockTitle_wfield2}" />
+
+                        <p:outputLabel value="#{myBundle.EditStockLabel_wfield3}" for="wfield3" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield3" value="#{stockController.selected.wfield3}" title="#{myBundle.EditStockTitle_wfield3}" />
+
+                        <p:outputLabel value="#{myBundle.EditStockLabel_wfield4}" for="wfield4" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield4" value="#{stockController.selected.wfield4}" title="#{myBundle.EditStockTitle_wfield4}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{stockController.save}" value="#{myBundle.Save}" update="display,:StockListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('StockEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('StockEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

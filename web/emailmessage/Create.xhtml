@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmailmessageCreateDlg" widgetVar="EmailmessageCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateEmailmessageTitle}" closeOnEscape="true">
+
+            <h:form id="EmailmessageCreateForm">
+
+                <h:panelGroup id="display" rendered="#{emailmessageController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateEmailmessageLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{emailmessageController.selected.id}" title="#{myBundle.CreateEmailmessageTitle_id}" required="true" requiredMessage="#{myBundle.CreateEmailmessageRequiredMessage_id}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEmailmessageLabel_dwfield1}" for="dwfield1" />
+                        <p:inputText id="dwfield1" value="#{emailmessageController.selected.dwfield1}" title="#{myBundle.CreateEmailmessageTitle_dwfield1}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEmailmessageLabel_dwfield2}" for="dwfield2" />
+                        <p:inputText id="dwfield2" value="#{emailmessageController.selected.dwfield2}" title="#{myBundle.CreateEmailmessageTitle_dwfield2}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEmailmessageLabel_dwfield3}" for="dwfield3" />
+                        <p:inputText id="dwfield3" value="#{emailmessageController.selected.dwfield3}" title="#{myBundle.CreateEmailmessageTitle_dwfield3}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEmailmessageLabel_message}" for="message" />
+                        <p:inputText id="message" value="#{emailmessageController.selected.message}" title="#{myBundle.CreateEmailmessageTitle_message}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEmailmessageLabel_recipient}" for="recipient" />
+                        <p:inputText id="recipient" value="#{emailmessageController.selected.recipient}" title="#{myBundle.CreateEmailmessageTitle_recipient}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEmailmessageLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{emailmessageController.selected.status}" title="#{myBundle.CreateEmailmessageTitle_status}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEmailmessageLabel_wfield1}" for="wfield1" />
+                        <p:inputText id="wfield1" value="#{emailmessageController.selected.wfield1}" title="#{myBundle.CreateEmailmessageTitle_wfield1}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEmailmessageLabel_wfield2}" for="wfield2" />
+                        <p:inputText id="wfield2" value="#{emailmessageController.selected.wfield2}" title="#{myBundle.CreateEmailmessageTitle_wfield2}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEmailmessageLabel_wfield3}" for="wfield3" />
+                        <p:inputText id="wfield3" value="#{emailmessageController.selected.wfield3}" title="#{myBundle.CreateEmailmessageTitle_wfield3}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{emailmessageController.saveNew}" value="#{myBundle.Save}" update="display,:EmailmessageListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('EmailmessageCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('EmailmessageCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

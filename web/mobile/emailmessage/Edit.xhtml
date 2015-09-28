@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="EmailmessageEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditEmailmessageTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:EmailmessageListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="EmailmessageEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{emailmessageController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditEmailmessageLabel_id}" for="id" />
+                            <h:outputText id="id" value="#{emailmessageController.selected.id}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEmailmessageLabel_dwfield1}" for="dwfield1" />
+                            <p:inputText id="dwfield1" value="#{emailmessageController.selected.dwfield1}" title="#{myBundle.EditEmailmessageTitle_dwfield1}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEmailmessageLabel_dwfield2}" for="dwfield2" />
+                            <p:inputText id="dwfield2" value="#{emailmessageController.selected.dwfield2}" title="#{myBundle.EditEmailmessageTitle_dwfield2}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEmailmessageLabel_dwfield3}" for="dwfield3" />
+                            <p:inputText id="dwfield3" value="#{emailmessageController.selected.dwfield3}" title="#{myBundle.EditEmailmessageTitle_dwfield3}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEmailmessageLabel_message}" for="message" />
+                            <p:inputText id="message" value="#{emailmessageController.selected.message}" title="#{myBundle.EditEmailmessageTitle_message}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEmailmessageLabel_recipient}" for="recipient" />
+                            <p:inputText id="recipient" value="#{emailmessageController.selected.recipient}" title="#{myBundle.EditEmailmessageTitle_recipient}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEmailmessageLabel_status}" for="status" />
+                            <p:inputText id="status" value="#{emailmessageController.selected.status}" title="#{myBundle.EditEmailmessageTitle_status}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEmailmessageLabel_wfield1}" for="wfield1" />
+                            <p:inputText id="wfield1" value="#{emailmessageController.selected.wfield1}" title="#{myBundle.EditEmailmessageTitle_wfield1}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEmailmessageLabel_wfield2}" for="wfield2" />
+                            <p:inputText id="wfield2" value="#{emailmessageController.selected.wfield2}" title="#{myBundle.EditEmailmessageTitle_wfield2}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEmailmessageLabel_wfield3}" for="wfield3" />
+                            <p:inputText id="wfield3" value="#{emailmessageController.selected.wfield3}" title="#{myBundle.EditEmailmessageTitle_wfield3}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{emailmessageController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:EmailmessageListPage:EmailmessageListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:EmailmessageListPage')}">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

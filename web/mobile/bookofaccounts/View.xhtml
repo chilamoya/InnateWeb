@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="BookofaccountsViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewBookofaccountsTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:BookofaccountsListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="BookofaccountsViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{bookofaccountsController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewBookofaccountsLabel_id}"/>
+                            <h:outputText value="#{bookofaccountsController.selected.id}" title="#{myBundle.ViewBookofaccountsTitle_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewBookofaccountsLabel_balance}"/>
+                            <h:outputText value="#{bookofaccountsController.selected.balance}" title="#{myBundle.ViewBookofaccountsTitle_balance}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewBookofaccountsLabel_createdate}"/>
+                            <h:outputText value="#{bookofaccountsController.selected.createdate}" title="#{myBundle.ViewBookofaccountsTitle_createdate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewBookofaccountsLabel_currentbalance}"/>
+                            <h:outputText value="#{bookofaccountsController.selected.currentbalance}" title="#{myBundle.ViewBookofaccountsTitle_currentbalance}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewBookofaccountsLabel_description}"/>
+                            <h:outputText value="#{bookofaccountsController.selected.description}" title="#{myBundle.ViewBookofaccountsTitle_description}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewBookofaccountsLabel_erpmodule}"/>
+                            <h:outputText value="#{bookofaccountsController.selected.erpmodule}" title="#{myBundle.ViewBookofaccountsTitle_erpmodule}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewBookofaccountsLabel_rawdata}"/>
+                            <h:outputText value="#{bookofaccountsController.selected.rawdata}" title="#{myBundle.ViewBookofaccountsTitle_rawdata}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewBookofaccountsLabel_transactiondate}"/>
+                            <h:outputText value="#{bookofaccountsController.selected.transactiondate}" title="#{myBundle.ViewBookofaccountsTitle_transactiondate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewBookofaccountsLabel_creditedaccountId}"/>
+                            <h:outputText value="#{bookofaccountsController.selected.creditedaccountId.description}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewBookofaccountsLabel_debitedaccountId}"/>
+                            <h:outputText value="#{bookofaccountsController.selected.debitedaccountId.description}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewBookofaccountsLabel_transactionId}"/>
+                            <h:outputText value="#{bookofaccountsController.selected.transactionId.id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewBookofaccountsLabel_userId}"/>
+                            <h:outputText value="#{bookofaccountsController.selected.userId.fullname}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

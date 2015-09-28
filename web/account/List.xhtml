@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="AccountListForm">
+
+        <p:panel header="#{myBundle.ListAccountTitle}">
+            <p:contextMenu id="AccountDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('AccountListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('AccountListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('AccountListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('AccountListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.AccountMenuItem_accounttransactiondefinitionList}" icon="ui-icon-search"  action="#{accountController.navigateAccounttransactiondefinitionList}" disabled="#{empty accountController.selected.accounttransactiondefinitionList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.AccountMenuItem_accounttransactiondefinitionList1}" icon="ui-icon-search"  action="#{accountController.navigateAccounttransactiondefinitionList1}" disabled="#{empty accountController.selected.accounttransactiondefinitionList1}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.AccountMenuItem_bookofaccountsList}" icon="ui-icon-search"  action="#{accountController.navigateBookofaccountsList}" disabled="#{empty accountController.selected.bookofaccountsList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.AccountMenuItem_bookofaccountsList1}" icon="ui-icon-search"  action="#{accountController.navigateBookofaccountsList1}" disabled="#{empty accountController.selected.bookofaccountsList1}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{accountController.items}"
+                         var="item"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{accountController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:AccountDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:AccountDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('AccountListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.address}" filterBy="#{item.address}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountTitle_address}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.address}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.balance}" filterBy="#{item.balance}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountTitle_balance}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.balance}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.code}" filterBy="#{item.code}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountTitle_code}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.code}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.contacts}" filterBy="#{item.contacts}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountTitle_contacts}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.contacts}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.datecreated}" filterBy="#{item.datecreated}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountTitle_datecreated}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.datecreated}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.description}" filterBy="#{item.description}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountTitle_description}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.description}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.email}" filterBy="#{item.email}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountTitle_email}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.email}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.mobile}" filterBy="#{item.mobile}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountTitle_mobile}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.mobile}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.name}" filterBy="#{item.name}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountTitle_name}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.name}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.sex}" filterBy="#{item.sex}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountTitle_sex}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.sex}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.wfield1}" filterBy="#{item.wfield1}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountTitle_wfield1}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.wfield1}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.wfield2}" filterBy="#{item.wfield2}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountTitle_wfield2}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.wfield2}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.wfield3}" filterBy="#{item.wfield3}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountTitle_wfield3}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.wfield3}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.wfield4}" filterBy="#{item.wfield4}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountTitle_wfield4}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.wfield4}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{accountController.prepareCreate}" update=":AccountCreateForm" oncomplete="PF('AccountCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":AccountViewForm" oncomplete="PF('AccountViewDialog').show()" disabled="#{empty accountController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":AccountEditForm" oncomplete="PF('AccountEditDialog').show()" disabled="#{empty accountController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{accountController.delete}" update=":growl,datalist" disabled="#{empty accountController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

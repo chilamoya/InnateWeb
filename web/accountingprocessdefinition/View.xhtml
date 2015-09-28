@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AccountingprocessdefinitionViewDlg" widgetVar="AccountingprocessdefinitionViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewAccountingprocessdefinitionTitle}" closeOnEscape="true">
+
+            <h:form id="AccountingprocessdefinitionViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{accountingprocessdefinitionController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_id}"/>
+                        <h:outputText value="#{accountingprocessdefinitionController.selected.id}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_datecreated}"/>
+                        <h:outputText value="#{accountingprocessdefinitionController.selected.datecreated}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_datecreated}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_description}"/>
+                        <h:outputText value="#{accountingprocessdefinitionController.selected.description}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_description}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_name}"/>
+                        <h:outputText value="#{accountingprocessdefinitionController.selected.name}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_name}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_wfield1}"/>
+                        <h:outputText value="#{accountingprocessdefinitionController.selected.wfield1}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_wfield1}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_wfield2}"/>
+                        <h:outputText value="#{accountingprocessdefinitionController.selected.wfield2}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_wfield2}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_wfield3}"/>
+                        <h:outputText value="#{accountingprocessdefinitionController.selected.wfield3}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_wfield3}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_wfield4}"/>
+                        <h:outputText value="#{accountingprocessdefinitionController.selected.wfield4}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_wfield4}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_wfield5}"/>
+                        <h:outputText value="#{accountingprocessdefinitionController.selected.wfield5}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_wfield5}"/>
+
+                        <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_wfield6}"/>
+                        <h:outputText value="#{accountingprocessdefinitionController.selected.wfield6}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_wfield6}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('AccountingprocessdefinitionViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StockCreateDlg" widgetVar="StockCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateStockTitle}" closeOnEscape="true">
+
+            <h:form id="StockCreateForm">
+
+                <h:panelGroup id="display" rendered="#{stockController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateStockLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{stockController.selected.id}" title="#{myBundle.CreateStockTitle_id}" required="true" requiredMessage="#{myBundle.CreateStockRequiredMessage_id}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateStockLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{stockController.selected.code}" title="#{myBundle.CreateStockTitle_code}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateStockLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{stockController.selected.description}" title="#{myBundle.CreateStockTitle_description}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateStockLabel_imagepath}" for="imagepath" />
+                        <p:inputText id="imagepath" value="#{stockController.selected.imagepath}" title="#{myBundle.CreateStockTitle_imagepath}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateStockLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{stockController.selected.name}" title="#{myBundle.CreateStockTitle_name}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateStockLabel_price}" for="price" />
+                        <p:inputText id="price" value="#{stockController.selected.price}" title="#{myBundle.CreateStockTitle_price}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateStockLabel_quantity}" for="quantity" />
+                        <p:inputText id="quantity" value="#{stockController.selected.quantity}" title="#{myBundle.CreateStockTitle_quantity}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateStockLabel_wfield1}" for="wfield1" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield1" value="#{stockController.selected.wfield1}" title="#{myBundle.CreateStockTitle_wfield1}" />
+
+                        <p:outputLabel value="#{myBundle.CreateStockLabel_wfield2}" for="wfield2" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield2" value="#{stockController.selected.wfield2}" title="#{myBundle.CreateStockTitle_wfield2}" />
+
+                        <p:outputLabel value="#{myBundle.CreateStockLabel_wfield3}" for="wfield3" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield3" value="#{stockController.selected.wfield3}" title="#{myBundle.CreateStockTitle_wfield3}" />
+
+                        <p:outputLabel value="#{myBundle.CreateStockLabel_wfield4}" for="wfield4" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield4" value="#{stockController.selected.wfield4}" title="#{myBundle.CreateStockTitle_wfield4}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{stockController.saveNew}" value="#{myBundle.Save}" update="display,:StockListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('StockCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('StockCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

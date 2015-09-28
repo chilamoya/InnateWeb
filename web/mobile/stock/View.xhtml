@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="StockViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewStockTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:StockListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="StockViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{stockController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewStockLabel_id}"/>
+                            <h:outputText value="#{stockController.selected.id}" title="#{myBundle.ViewStockTitle_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewStockLabel_code}"/>
+                            <h:outputText value="#{stockController.selected.code}" title="#{myBundle.ViewStockTitle_code}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewStockLabel_description}"/>
+                            <h:outputText value="#{stockController.selected.description}" title="#{myBundle.ViewStockTitle_description}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewStockLabel_imagepath}"/>
+                            <h:outputText value="#{stockController.selected.imagepath}" title="#{myBundle.ViewStockTitle_imagepath}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewStockLabel_name}"/>
+                            <h:outputText value="#{stockController.selected.name}" title="#{myBundle.ViewStockTitle_name}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewStockLabel_price}"/>
+                            <h:outputText value="#{stockController.selected.price}" title="#{myBundle.ViewStockTitle_price}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewStockLabel_quantity}"/>
+                            <h:outputText value="#{stockController.selected.quantity}" title="#{myBundle.ViewStockTitle_quantity}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewStockLabel_wfield1}"/>
+                            <h:outputText value="#{stockController.selected.wfield1}" title="#{myBundle.ViewStockTitle_wfield1}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewStockLabel_wfield2}"/>
+                            <h:outputText value="#{stockController.selected.wfield2}" title="#{myBundle.ViewStockTitle_wfield2}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewStockLabel_wfield3}"/>
+                            <h:outputText value="#{stockController.selected.wfield3}" title="#{myBundle.ViewStockTitle_wfield3}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewStockLabel_wfield4}"/>
+                            <h:outputText value="#{stockController.selected.wfield4}" title="#{myBundle.ViewStockTitle_wfield4}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SystemuserCreateDlg" widgetVar="SystemuserCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateSystemuserTitle}" closeOnEscape="true">
+
+            <h:form id="SystemuserCreateForm">
+
+                <h:panelGroup id="display" rendered="#{systemuserController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateSystemuserLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{systemuserController.selected.id}" title="#{myBundle.CreateSystemuserTitle_id}" required="true" requiredMessage="#{myBundle.CreateSystemuserRequiredMessage_id}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateSystemuserLabel_cellphonenumber}" for="cellphonenumber" />
+                        <p:inputText id="cellphonenumber" value="#{systemuserController.selected.cellphonenumber}" title="#{myBundle.CreateSystemuserTitle_cellphonenumber}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateSystemuserLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{systemuserController.selected.email}" title="#{myBundle.CreateSystemuserTitle_email}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateSystemuserLabel_fullname}" for="fullname" />
+                        <p:inputText id="fullname" value="#{systemuserController.selected.fullname}" title="#{myBundle.CreateSystemuserTitle_fullname}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateSystemuserLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{systemuserController.selected.password}" title="#{myBundle.CreateSystemuserTitle_password}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateSystemuserLabel_username}" for="username" />
+                        <p:inputText id="username" value="#{systemuserController.selected.username}" title="#{myBundle.CreateSystemuserTitle_username}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{systemuserController.saveNew}" value="#{myBundle.Save}" update="display,:SystemuserListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('SystemuserCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('SystemuserCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

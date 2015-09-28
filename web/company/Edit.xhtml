@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="CompanyEditDlg" widgetVar="CompanyEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditCompanyTitle}" closeOnEscape="true">
+
+            <h:form id="CompanyEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{companyController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditCompanyLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{companyController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditCompanyLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{companyController.selected.address}" title="#{myBundle.EditCompanyTitle_address}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditCompanyLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{companyController.selected.code}" title="#{myBundle.EditCompanyTitle_code}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditCompanyLabel_contactemail}" for="contactemail" />
+                        <p:inputText id="contactemail" value="#{companyController.selected.contactemail}" title="#{myBundle.EditCompanyTitle_contactemail}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditCompanyLabel_contactnumber}" for="contactnumber" />
+                        <p:inputText id="contactnumber" value="#{companyController.selected.contactnumber}" title="#{myBundle.EditCompanyTitle_contactnumber}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditCompanyLabel_createddate}" for="createddate" />
+                        <p:calendar id="createddate" pattern="MM/dd/yyyy" value="#{companyController.selected.createddate}" title="#{myBundle.EditCompanyTitle_createddate}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditCompanyLabel_mobilenumber}" for="mobilenumber" />
+                        <p:inputText id="mobilenumber" value="#{companyController.selected.mobilenumber}" title="#{myBundle.EditCompanyTitle_mobilenumber}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditCompanyLabel_name}" for="name" />
+                        <p:inputTextarea rows="4" cols="30" id="name" value="#{companyController.selected.name}" title="#{myBundle.EditCompanyTitle_name}" />
+
+                        <p:outputLabel value="#{myBundle.EditCompanyLabel_smsbalance}" for="smsbalance" />
+                        <p:inputText id="smsbalance" value="#{companyController.selected.smsbalance}" title="#{myBundle.EditCompanyTitle_smsbalance}"/>
+
+                        <p:outputLabel value="#{myBundle.EditCompanyLabel_smspassword}" for="smspassword" />
+                        <p:inputText id="smspassword" value="#{companyController.selected.smspassword}" title="#{myBundle.EditCompanyTitle_smspassword}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditCompanyLabel_smsusername}" for="smsusername" />
+                        <p:inputText id="smsusername" value="#{companyController.selected.smsusername}" title="#{myBundle.EditCompanyTitle_smsusername}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{companyController.save}" value="#{myBundle.Save}" update="display,:CompanyListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('CompanyEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('CompanyEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="EmailmessageListPage">
+        <pm:header title="#{myBundle.ListEmailmessageTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":EmailmessageCreatePage:EmailmessageCreateForm" actionListener="#{emailmessageController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:EmailmessageCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="EmailmessageListForm">
+
+                <p:dataTable id="datalist"
+                             value="#{emailmessageController.items}"
+                             var="item"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             selectionMode="single"
+                             selection="#{emailmessageController.selected}"
+                             reflow="true">
+
+                    <p:ajax event="rowSelect"   update="@form:editButton,@form:deleteButton"/>
+                    <p:ajax event="rowUnselect" update="@form:editButton,@form:deleteButton"/>
+                    <p:ajax event="swipeleft"   oncomplete="document.getElementById('EmailmessageListPage:EmailmessageListForm:deleteButton').click();"/>
+                    <p:ajax event="tap"         oncomplete="document.getElementById('EmailmessageListPage:EmailmessageListForm:editButton').click();"/>
+
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{myBundle.ListEmailmessageTitle_id}">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.dwfield1}" filterBy="#{item.dwfield1}" headerText="#{myBundle.ListEmailmessageTitle_dwfield1}">
+                        <h:outputText value="#{item.dwfield1}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.dwfield2}" filterBy="#{item.dwfield2}" headerText="#{myBundle.ListEmailmessageTitle_dwfield2}">
+                        <h:outputText value="#{item.dwfield2}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.dwfield3}" filterBy="#{item.dwfield3}" headerText="#{myBundle.ListEmailmessageTitle_dwfield3}">
+                        <h:outputText value="#{item.dwfield3}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.message}" filterBy="#{item.message}" headerText="#{myBundle.ListEmailmessageTitle_message}">
+                        <h:outputText value="#{item.message}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.recipient}" filterBy="#{item.recipient}" headerText="#{myBundle.ListEmailmessageTitle_recipient}">
+                        <h:outputText value="#{item.recipient}"/>
+                    </p:column>
+
+                    <!--
+                                        <p:column sortBy="#{item.status}" filterBy="#{item.status}" headerText="#{myBundle.ListEmailmessageTitle_status}">
+                                            <h:outputText value="#{item.status}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.wfield1}" filterBy="#{item.wfield1}" headerText="#{myBundle.ListEmailmessageTitle_wfield1}">
+                                            <h:outputText value="#{item.wfield1}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.wfield2}" filterBy="#{item.wfield2}" headerText="#{myBundle.ListEmailmessageTitle_wfield2}">
+                                            <h:outputText value="#{item.wfield2}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.wfield3}" filterBy="#{item.wfield3}" headerText="#{myBundle.ListEmailmessageTitle_wfield3}">
+                                            <h:outputText value="#{item.wfield3}"/>
+                                        </p:column>
+                    -->
+                </p:dataTable>
+                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":EmailmessageEditPage:EmailmessageEditForm" disabled="#{empty emailmessageController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:EmailmessageEditPage')}"/>
+                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{emailmessageController.delete}" update=":growl,datalist" disabled="#{empty emailmessageController.selected}">
+                    <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                </p:commandButton>
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

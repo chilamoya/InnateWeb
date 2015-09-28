@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="AccountingprocessdefinitionListForm">
+
+        <p:panel header="#{myBundle.ListAccountingprocessdefinitionTitle}">
+            <p:contextMenu id="AccountingprocessdefinitionDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('AccountingprocessdefinitionListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('AccountingprocessdefinitionListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('AccountingprocessdefinitionListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('AccountingprocessdefinitionListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.AccountingprocessdefinitionMenuItem_accountprocesstransactionList}" icon="ui-icon-search"  action="#{accountingprocessdefinitionController.navigateAccountprocesstransactionList}" disabled="#{empty accountingprocessdefinitionController.selected.accountprocesstransactionList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{accountingprocessdefinitionController.items}"
+                         var="item"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{accountingprocessdefinitionController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:AccountingprocessdefinitionDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:AccountingprocessdefinitionDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('AccountingprocessdefinitionListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountingprocessdefinitionTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.datecreated}" filterBy="#{item.datecreated}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountingprocessdefinitionTitle_datecreated}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.datecreated}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.description}" filterBy="#{item.description}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountingprocessdefinitionTitle_description}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.description}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.name}" filterBy="#{item.name}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountingprocessdefinitionTitle_name}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.name}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.wfield1}" filterBy="#{item.wfield1}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountingprocessdefinitionTitle_wfield1}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.wfield1}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.wfield2}" filterBy="#{item.wfield2}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAccountingprocessdefinitionTitle_wfield2}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.wfield2}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.wfield3}" filterBy="#{item.wfield3}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountingprocessdefinitionTitle_wfield3}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.wfield3}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.wfield4}" filterBy="#{item.wfield4}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountingprocessdefinitionTitle_wfield4}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.wfield4}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.wfield5}" filterBy="#{item.wfield5}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountingprocessdefinitionTitle_wfield5}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.wfield5}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.wfield6}" filterBy="#{item.wfield6}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAccountingprocessdefinitionTitle_wfield6}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.wfield6}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{accountingprocessdefinitionController.prepareCreate}" update=":AccountingprocessdefinitionCreateForm" oncomplete="PF('AccountingprocessdefinitionCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":AccountingprocessdefinitionViewForm" oncomplete="PF('AccountingprocessdefinitionViewDialog').show()" disabled="#{empty accountingprocessdefinitionController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":AccountingprocessdefinitionEditForm" oncomplete="PF('AccountingprocessdefinitionEditDialog').show()" disabled="#{empty accountingprocessdefinitionController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{accountingprocessdefinitionController.delete}" update=":growl,datalist" disabled="#{empty accountingprocessdefinitionController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

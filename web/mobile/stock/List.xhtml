@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="StockListPage">
+        <pm:header title="#{myBundle.ListStockTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":StockCreatePage:StockCreateForm" actionListener="#{stockController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:StockCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="StockListForm">
+
+                <p:dataTable id="datalist"
+                             value="#{stockController.items}"
+                             var="item"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             selectionMode="single"
+                             selection="#{stockController.selected}"
+                             reflow="true">
+
+                    <p:ajax event="rowSelect"   update="@form:editButton,@form:deleteButton"/>
+                    <p:ajax event="rowUnselect" update="@form:editButton,@form:deleteButton"/>
+                    <p:ajax event="swipeleft"   oncomplete="document.getElementById('StockListPage:StockListForm:deleteButton').click();"/>
+                    <p:ajax event="tap"         oncomplete="document.getElementById('StockListPage:StockListForm:editButton').click();"/>
+
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{myBundle.ListStockTitle_id}">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.code}" filterBy="#{item.code}" headerText="#{myBundle.ListStockTitle_code}">
+                        <h:outputText value="#{item.code}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.description}" filterBy="#{item.description}" headerText="#{myBundle.ListStockTitle_description}">
+                        <h:outputText value="#{item.description}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.imagepath}" filterBy="#{item.imagepath}" headerText="#{myBundle.ListStockTitle_imagepath}">
+                        <h:outputText value="#{item.imagepath}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.name}" filterBy="#{item.name}" headerText="#{myBundle.ListStockTitle_name}">
+                        <h:outputText value="#{item.name}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.price}" filterBy="#{item.price}" headerText="#{myBundle.ListStockTitle_price}">
+                        <h:outputText value="#{item.price}"/>
+                    </p:column>
+
+                    <!--
+                                        <p:column sortBy="#{item.quantity}" filterBy="#{item.quantity}" headerText="#{myBundle.ListStockTitle_quantity}">
+                                            <h:outputText value="#{item.quantity}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.wfield1}" filterBy="#{item.wfield1}" headerText="#{myBundle.ListStockTitle_wfield1}">
+                                            <h:outputText value="#{item.wfield1}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.wfield2}" filterBy="#{item.wfield2}" headerText="#{myBundle.ListStockTitle_wfield2}">
+                                            <h:outputText value="#{item.wfield2}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.wfield3}" filterBy="#{item.wfield3}" headerText="#{myBundle.ListStockTitle_wfield3}">
+                                            <h:outputText value="#{item.wfield3}"/>
+                                        </p:column>
+                    -->
+                    <!--
+                                        <p:column sortBy="#{item.wfield4}" filterBy="#{item.wfield4}" headerText="#{myBundle.ListStockTitle_wfield4}">
+                                            <h:outputText value="#{item.wfield4}"/>
+                                        </p:column>
+                    -->
+                </p:dataTable>
+                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":StockEditPage:StockEditForm" disabled="#{empty stockController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:StockEditPage')}"/>
+                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{stockController.delete}" update=":growl,datalist" disabled="#{empty stockController.selected}">
+                    <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                </p:commandButton>
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

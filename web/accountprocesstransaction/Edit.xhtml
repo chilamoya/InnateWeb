@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="AccountprocesstransactionEditDlg" widgetVar="AccountprocesstransactionEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditAccountprocesstransactionTitle}" closeOnEscape="true">
+
+            <h:form id="AccountprocesstransactionEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{accountprocesstransactionController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditAccountprocesstransactionLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{accountprocesstransactionController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditAccountprocesstransactionLabel_wfield1}" for="wfield1" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield1" value="#{accountprocesstransactionController.selected.wfield1}" title="#{myBundle.EditAccountprocesstransactionTitle_wfield1}" />
+
+                        <p:outputLabel value="#{myBundle.EditAccountprocesstransactionLabel_wfield2}" for="wfield2" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield2" value="#{accountprocesstransactionController.selected.wfield2}" title="#{myBundle.EditAccountprocesstransactionTitle_wfield2}" />
+
+                        <p:outputLabel value="#{myBundle.EditAccountprocesstransactionLabel_wfield3}" for="wfield3" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield3" value="#{accountprocesstransactionController.selected.wfield3}" title="#{myBundle.EditAccountprocesstransactionTitle_wfield3}" />
+
+                        <p:outputLabel value="#{myBundle.EditAccountprocesstransactionLabel_wfield4}" for="wfield4" />
+                        <p:inputTextarea rows="4" cols="30" id="wfield4" value="#{accountprocesstransactionController.selected.wfield4}" title="#{myBundle.EditAccountprocesstransactionTitle_wfield4}" />
+
+                        <p:outputLabel value="#{myBundle.EditAccountprocesstransactionLabel_wfield5}" for="wfield5" />
+                        <p:inputText id="wfield5" value="#{accountprocesstransactionController.selected.wfield5}" title="#{myBundle.EditAccountprocesstransactionTitle_wfield5}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditAccountprocesstransactionLabel_wfield6}" for="wfield6" />
+                        <p:inputText id="wfield6" value="#{accountprocesstransactionController.selected.wfield6}" title="#{myBundle.EditAccountprocesstransactionTitle_wfield6}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditAccountprocesstransactionLabel_accountprocessdefinitionId}" for="accountprocessdefinitionId" />
+                        <p:selectOneMenu id="accountprocessdefinitionId" value="#{accountprocesstransactionController.selected.accountprocessdefinitionId}"  converter="accountingprocessdefinitionConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{accountingprocessdefinitionController.items}"
+                                           var="accountprocessdefinitionIdItem"
+                                           itemValue="#{accountprocessdefinitionIdItem}"
+                                           itemLabel="#{accountprocessdefinitionIdItem.description.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{accountprocesstransactionController.save}" value="#{myBundle.Save}" update="display,:AccountprocesstransactionListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AccountprocesstransactionEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('AccountprocesstransactionEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

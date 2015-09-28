@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="BookofaccountsListForm">
+
+        <p:panel header="#{myBundle.ListBookofaccountsTitle}">
+            <p:contextMenu id="BookofaccountsDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('BookofaccountsListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('BookofaccountsListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('BookofaccountsListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('BookofaccountsListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.BookofaccountsMenuItem_creditedaccountId}" icon="ui-icon-search"  actionListener="#{bookofaccountsController.prepareCreditedaccountId}" update=":AccountViewForm" oncomplete="PF('AccountViewDialog').show()" disabled="#{empty bookofaccountsController.selected.creditedaccountId}"/>  
+                <p:menuitem value="#{myBundle.BookofaccountsMenuItem_debitedaccountId}" icon="ui-icon-search"  actionListener="#{bookofaccountsController.prepareDebitedaccountId}" update=":AccountViewForm" oncomplete="PF('AccountViewDialog').show()" disabled="#{empty bookofaccountsController.selected.debitedaccountId}"/>  
+                <p:menuitem value="#{myBundle.BookofaccountsMenuItem_transactionId}" icon="ui-icon-search"  actionListener="#{bookofaccountsController.prepareTransactionId}" update=":AccountprocesstransactionViewForm" oncomplete="PF('AccountprocesstransactionViewDialog').show()" disabled="#{empty bookofaccountsController.selected.transactionId}"/>  
+                <p:menuitem value="#{myBundle.BookofaccountsMenuItem_userId}" icon="ui-icon-search"  actionListener="#{bookofaccountsController.prepareUserId}" update=":SystemuserViewForm" oncomplete="PF('SystemuserViewDialog').show()" disabled="#{empty bookofaccountsController.selected.userId}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{bookofaccountsController.items}"
+                         var="item"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{bookofaccountsController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:BookofaccountsDataTableContextMenu" listener="#{bookofaccountsController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:BookofaccountsDataTableContextMenu" listener="#{bookofaccountsController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{bookofaccountsController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('BookofaccountsListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListBookofaccountsTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.balance}" filterBy="#{item.balance}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListBookofaccountsTitle_balance}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.balance}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.createdate}" filterBy="#{item.createdate}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListBookofaccountsTitle_createdate}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.createdate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.currentbalance}" filterBy="#{item.currentbalance}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListBookofaccountsTitle_currentbalance}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.currentbalance}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.description}" filterBy="#{item.description}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListBookofaccountsTitle_description}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.description}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.erpmodule}" filterBy="#{item.erpmodule}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListBookofaccountsTitle_erpmodule}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.erpmodule}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.rawdata}" filterBy="#{item.rawdata}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListBookofaccountsTitle_rawdata}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.rawdata}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.transactiondate}" filterBy="#{item.transactiondate}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListBookofaccountsTitle_transactiondate}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.transactiondate}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.creditedaccountId.description}" filterBy="#{item.creditedaccountId.description}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListBookofaccountsTitle_creditedaccountId}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.creditedaccountId.description}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.debitedaccountId.description}" filterBy="#{item.debitedaccountId.description}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListBookofaccountsTitle_debitedaccountId}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.debitedaccountId.description}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.transactionId.id}" filterBy="#{item.transactionId.id}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListBookofaccountsTitle_transactionId}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.transactionId.id}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.userId.fullname}" filterBy="#{item.userId.fullname}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListBookofaccountsTitle_userId}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.userId.fullname}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{bookofaccountsController.prepareCreate}" update=":BookofaccountsCreateForm" oncomplete="PF('BookofaccountsCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":BookofaccountsViewForm" oncomplete="PF('BookofaccountsViewDialog').show()" disabled="#{empty bookofaccountsController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":BookofaccountsEditForm" oncomplete="PF('BookofaccountsEditDialog').show()" disabled="#{empty bookofaccountsController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{bookofaccountsController.delete}" update=":growl,datalist" disabled="#{empty bookofaccountsController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="AccountEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditAccountTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:AccountListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="AccountEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{accountController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditAccountLabel_id}" for="id" />
+                            <h:outputText id="id" value="#{accountController.selected.id}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAccountLabel_address}" for="address" />
+                            <p:inputText id="address" value="#{accountController.selected.address}" title="#{myBundle.EditAccountTitle_address}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAccountLabel_balance}" for="balance" />
+                            <p:inputText id="balance" value="#{accountController.selected.balance}" title="#{myBundle.EditAccountTitle_balance}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAccountLabel_code}" for="code" />
+                            <p:inputText id="code" value="#{accountController.selected.code}" title="#{myBundle.EditAccountTitle_code}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAccountLabel_contacts}" for="contacts" />
+                            <p:inputText id="contacts" value="#{accountController.selected.contacts}" title="#{myBundle.EditAccountTitle_contacts}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAccountLabel_datecreated}" for="datecreated" />
+                            <p:calendar id="datecreated" pattern="MM/dd/yyyy" value="#{accountController.selected.datecreated}" title="#{myBundle.EditAccountTitle_datecreated}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAccountLabel_description}" for="description" />
+                            <p:inputText id="description" value="#{accountController.selected.description}" title="#{myBundle.EditAccountTitle_description}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAccountLabel_email}" for="email" />
+                            <p:inputText id="email" value="#{accountController.selected.email}" title="#{myBundle.EditAccountTitle_email}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAccountLabel_mobile}" for="mobile" />
+                            <p:inputText id="mobile" value="#{accountController.selected.mobile}" title="#{myBundle.EditAccountTitle_mobile}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAccountLabel_name}" for="name" />
+                            <p:inputText id="name" value="#{accountController.selected.name}" title="#{myBundle.EditAccountTitle_name}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAccountLabel_sex}" for="sex" />
+                            <p:inputText id="sex" value="#{accountController.selected.sex}" title="#{myBundle.EditAccountTitle_sex}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAccountLabel_wfield1}" for="wfield1" />
+                            <p:inputTextarea rows="4" cols="30" id="wfield1" value="#{accountController.selected.wfield1}" title="#{myBundle.EditAccountTitle_wfield1}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAccountLabel_wfield2}" for="wfield2" />
+                            <p:inputTextarea rows="4" cols="30" id="wfield2" value="#{accountController.selected.wfield2}" title="#{myBundle.EditAccountTitle_wfield2}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAccountLabel_wfield3}" for="wfield3" />
+                            <p:inputText id="wfield3" value="#{accountController.selected.wfield3}" title="#{myBundle.EditAccountTitle_wfield3}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAccountLabel_wfield4}" for="wfield4" />
+                            <p:inputText id="wfield4" value="#{accountController.selected.wfield4}" title="#{myBundle.EditAccountTitle_wfield4}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{accountController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:AccountListPage:AccountListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:AccountListPage')}">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

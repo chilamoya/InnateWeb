@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BookofaccountsViewDlg" widgetVar="BookofaccountsViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewBookofaccountsTitle}" closeOnEscape="true">
+
+            <h:form id="BookofaccountsViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{bookofaccountsController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewBookofaccountsLabel_id}"/>
+                        <h:outputText value="#{bookofaccountsController.selected.id}" title="#{myBundle.ViewBookofaccountsTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewBookofaccountsLabel_balance}"/>
+                        <h:outputText value="#{bookofaccountsController.selected.balance}" title="#{myBundle.ViewBookofaccountsTitle_balance}"/>
+
+                        <h:outputText value="#{myBundle.ViewBookofaccountsLabel_createdate}"/>
+                        <h:outputText value="#{bookofaccountsController.selected.createdate}" title="#{myBundle.ViewBookofaccountsTitle_createdate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewBookofaccountsLabel_currentbalance}"/>
+                        <h:outputText value="#{bookofaccountsController.selected.currentbalance}" title="#{myBundle.ViewBookofaccountsTitle_currentbalance}"/>
+
+                        <h:outputText value="#{myBundle.ViewBookofaccountsLabel_description}"/>
+                        <h:outputText value="#{bookofaccountsController.selected.description}" title="#{myBundle.ViewBookofaccountsTitle_description}"/>
+
+                        <h:outputText value="#{myBundle.ViewBookofaccountsLabel_erpmodule}"/>
+                        <h:outputText value="#{bookofaccountsController.selected.erpmodule}" title="#{myBundle.ViewBookofaccountsTitle_erpmodule}"/>
+
+                        <h:outputText value="#{myBundle.ViewBookofaccountsLabel_rawdata}"/>
+                        <h:outputText value="#{bookofaccountsController.selected.rawdata}" title="#{myBundle.ViewBookofaccountsTitle_rawdata}"/>
+
+                        <h:outputText value="#{myBundle.ViewBookofaccountsLabel_transactiondate}"/>
+                        <h:outputText value="#{bookofaccountsController.selected.transactiondate}" title="#{myBundle.ViewBookofaccountsTitle_transactiondate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewBookofaccountsLabel_creditedaccountId}"/>
+                        <h:outputText value="#{bookofaccountsController.selected.creditedaccountId.description}"/>
+
+                        <h:outputText value="#{myBundle.ViewBookofaccountsLabel_debitedaccountId}"/>
+                        <h:outputText value="#{bookofaccountsController.selected.debitedaccountId.description}"/>
+
+                        <h:outputText value="#{myBundle.ViewBookofaccountsLabel_transactionId}"/>
+                        <h:outputText value="#{bookofaccountsController.selected.transactionId.id}"/>
+
+                        <h:outputText value="#{myBundle.ViewBookofaccountsLabel_userId}"/>
+                        <h:outputText value="#{bookofaccountsController.selected.userId.fullname}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('BookofaccountsViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="SmsmessageEditDlg" widgetVar="SmsmessageEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditSmsmessageTitle}" closeOnEscape="true">
+
+            <h:form id="SmsmessageEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{smsmessageController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditSmsmessageLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{smsmessageController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditSmsmessageLabel_dwfield1}" for="dwfield1" />
+                        <p:inputText id="dwfield1" value="#{smsmessageController.selected.dwfield1}" title="#{myBundle.EditSmsmessageTitle_dwfield1}"/>
+
+                        <p:outputLabel value="#{myBundle.EditSmsmessageLabel_dwfield2}" for="dwfield2" />
+                        <p:inputText id="dwfield2" value="#{smsmessageController.selected.dwfield2}" title="#{myBundle.EditSmsmessageTitle_dwfield2}"/>
+
+                        <p:outputLabel value="#{myBundle.EditSmsmessageLabel_dwfield3}" for="dwfield3" />
+                        <p:inputText id="dwfield3" value="#{smsmessageController.selected.dwfield3}" title="#{myBundle.EditSmsmessageTitle_dwfield3}"/>
+
+                        <p:outputLabel value="#{myBundle.EditSmsmessageLabel_message}" for="message" />
+                        <p:inputText id="message" value="#{smsmessageController.selected.message}" title="#{myBundle.EditSmsmessageTitle_message}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditSmsmessageLabel_recipient}" for="recipient" />
+                        <p:inputText id="recipient" value="#{smsmessageController.selected.recipient}" title="#{myBundle.EditSmsmessageTitle_recipient}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditSmsmessageLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{smsmessageController.selected.status}" title="#{myBundle.EditSmsmessageTitle_status}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditSmsmessageLabel_wfield1}" for="wfield1" />
+                        <p:inputText id="wfield1" value="#{smsmessageController.selected.wfield1}" title="#{myBundle.EditSmsmessageTitle_wfield1}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditSmsmessageLabel_wfield2}" for="wfield2" />
+                        <p:inputText id="wfield2" value="#{smsmessageController.selected.wfield2}" title="#{myBundle.EditSmsmessageTitle_wfield2}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditSmsmessageLabel_wfield3}" for="wfield3" />
+                        <p:inputText id="wfield3" value="#{smsmessageController.selected.wfield3}" title="#{myBundle.EditSmsmessageTitle_wfield3}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{smsmessageController.save}" value="#{myBundle.Save}" update="display,:SmsmessageListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('SmsmessageEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('SmsmessageEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

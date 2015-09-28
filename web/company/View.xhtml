@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CompanyViewDlg" widgetVar="CompanyViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewCompanyTitle}" closeOnEscape="true">
+
+            <h:form id="CompanyViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{companyController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewCompanyLabel_id}"/>
+                        <h:outputText value="#{companyController.selected.id}" title="#{myBundle.ViewCompanyTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewCompanyLabel_address}"/>
+                        <h:outputText value="#{companyController.selected.address}" title="#{myBundle.ViewCompanyTitle_address}"/>
+
+                        <h:outputText value="#{myBundle.ViewCompanyLabel_code}"/>
+                        <h:outputText value="#{companyController.selected.code}" title="#{myBundle.ViewCompanyTitle_code}"/>
+
+                        <h:outputText value="#{myBundle.ViewCompanyLabel_contactemail}"/>
+                        <h:outputText value="#{companyController.selected.contactemail}" title="#{myBundle.ViewCompanyTitle_contactemail}"/>
+
+                        <h:outputText value="#{myBundle.ViewCompanyLabel_contactnumber}"/>
+                        <h:outputText value="#{companyController.selected.contactnumber}" title="#{myBundle.ViewCompanyTitle_contactnumber}"/>
+
+                        <h:outputText value="#{myBundle.ViewCompanyLabel_createddate}"/>
+                        <h:outputText value="#{companyController.selected.createddate}" title="#{myBundle.ViewCompanyTitle_createddate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewCompanyLabel_mobilenumber}"/>
+                        <h:outputText value="#{companyController.selected.mobilenumber}" title="#{myBundle.ViewCompanyTitle_mobilenumber}"/>
+
+                        <h:outputText value="#{myBundle.ViewCompanyLabel_name}"/>
+                        <h:outputText value="#{companyController.selected.name}" title="#{myBundle.ViewCompanyTitle_name}"/>
+
+                        <h:outputText value="#{myBundle.ViewCompanyLabel_smsbalance}"/>
+                        <h:outputText value="#{companyController.selected.smsbalance}" title="#{myBundle.ViewCompanyTitle_smsbalance}"/>
+
+                        <h:outputText value="#{myBundle.ViewCompanyLabel_smspassword}"/>
+                        <h:outputText value="#{companyController.selected.smspassword}" title="#{myBundle.ViewCompanyTitle_smspassword}"/>
+
+                        <h:outputText value="#{myBundle.ViewCompanyLabel_smsusername}"/>
+                        <h:outputText value="#{companyController.selected.smsusername}" title="#{myBundle.ViewCompanyTitle_smsusername}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('CompanyViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

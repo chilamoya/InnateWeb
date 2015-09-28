@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="AccountingprocessdefinitionViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewAccountingprocessdefinitionTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:AccountingprocessdefinitionListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="AccountingprocessdefinitionViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{accountingprocessdefinitionController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_id}"/>
+                            <h:outputText value="#{accountingprocessdefinitionController.selected.id}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_datecreated}"/>
+                            <h:outputText value="#{accountingprocessdefinitionController.selected.datecreated}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_datecreated}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_description}"/>
+                            <h:outputText value="#{accountingprocessdefinitionController.selected.description}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_description}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_name}"/>
+                            <h:outputText value="#{accountingprocessdefinitionController.selected.name}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_name}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_wfield1}"/>
+                            <h:outputText value="#{accountingprocessdefinitionController.selected.wfield1}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_wfield1}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_wfield2}"/>
+                            <h:outputText value="#{accountingprocessdefinitionController.selected.wfield2}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_wfield2}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_wfield3}"/>
+                            <h:outputText value="#{accountingprocessdefinitionController.selected.wfield3}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_wfield3}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_wfield4}"/>
+                            <h:outputText value="#{accountingprocessdefinitionController.selected.wfield4}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_wfield4}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_wfield5}"/>
+                            <h:outputText value="#{accountingprocessdefinitionController.selected.wfield5}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_wfield5}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountingprocessdefinitionLabel_wfield6}"/>
+                            <h:outputText value="#{accountingprocessdefinitionController.selected.wfield6}" title="#{myBundle.ViewAccountingprocessdefinitionTitle_wfield6}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

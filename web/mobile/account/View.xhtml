@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="AccountViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewAccountTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:AccountListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="AccountViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{accountController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_id}"/>
+                            <h:outputText value="#{accountController.selected.id}" title="#{myBundle.ViewAccountTitle_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_address}"/>
+                            <h:outputText value="#{accountController.selected.address}" title="#{myBundle.ViewAccountTitle_address}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_balance}"/>
+                            <h:outputText value="#{accountController.selected.balance}" title="#{myBundle.ViewAccountTitle_balance}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_code}"/>
+                            <h:outputText value="#{accountController.selected.code}" title="#{myBundle.ViewAccountTitle_code}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_contacts}"/>
+                            <h:outputText value="#{accountController.selected.contacts}" title="#{myBundle.ViewAccountTitle_contacts}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_datecreated}"/>
+                            <h:outputText value="#{accountController.selected.datecreated}" title="#{myBundle.ViewAccountTitle_datecreated}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_description}"/>
+                            <h:outputText value="#{accountController.selected.description}" title="#{myBundle.ViewAccountTitle_description}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_email}"/>
+                            <h:outputText value="#{accountController.selected.email}" title="#{myBundle.ViewAccountTitle_email}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_mobile}"/>
+                            <h:outputText value="#{accountController.selected.mobile}" title="#{myBundle.ViewAccountTitle_mobile}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_name}"/>
+                            <h:outputText value="#{accountController.selected.name}" title="#{myBundle.ViewAccountTitle_name}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_sex}"/>
+                            <h:outputText value="#{accountController.selected.sex}" title="#{myBundle.ViewAccountTitle_sex}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_wfield1}"/>
+                            <h:outputText value="#{accountController.selected.wfield1}" title="#{myBundle.ViewAccountTitle_wfield1}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_wfield2}"/>
+                            <h:outputText value="#{accountController.selected.wfield2}" title="#{myBundle.ViewAccountTitle_wfield2}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_wfield3}"/>
+                            <h:outputText value="#{accountController.selected.wfield3}" title="#{myBundle.ViewAccountTitle_wfield3}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewAccountLabel_wfield4}"/>
+                            <h:outputText value="#{accountController.selected.wfield4}" title="#{myBundle.ViewAccountTitle_wfield4}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

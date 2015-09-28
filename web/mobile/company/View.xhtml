@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="CompanyViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewCompanyTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:CompanyListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="CompanyViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{companyController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCompanyLabel_id}"/>
+                            <h:outputText value="#{companyController.selected.id}" title="#{myBundle.ViewCompanyTitle_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCompanyLabel_address}"/>
+                            <h:outputText value="#{companyController.selected.address}" title="#{myBundle.ViewCompanyTitle_address}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCompanyLabel_code}"/>
+                            <h:outputText value="#{companyController.selected.code}" title="#{myBundle.ViewCompanyTitle_code}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCompanyLabel_contactemail}"/>
+                            <h:outputText value="#{companyController.selected.contactemail}" title="#{myBundle.ViewCompanyTitle_contactemail}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCompanyLabel_contactnumber}"/>
+                            <h:outputText value="#{companyController.selected.contactnumber}" title="#{myBundle.ViewCompanyTitle_contactnumber}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCompanyLabel_createddate}"/>
+                            <h:outputText value="#{companyController.selected.createddate}" title="#{myBundle.ViewCompanyTitle_createddate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCompanyLabel_mobilenumber}"/>
+                            <h:outputText value="#{companyController.selected.mobilenumber}" title="#{myBundle.ViewCompanyTitle_mobilenumber}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCompanyLabel_name}"/>
+                            <h:outputText value="#{companyController.selected.name}" title="#{myBundle.ViewCompanyTitle_name}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCompanyLabel_smsbalance}"/>
+                            <h:outputText value="#{companyController.selected.smsbalance}" title="#{myBundle.ViewCompanyTitle_smsbalance}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCompanyLabel_smspassword}"/>
+                            <h:outputText value="#{companyController.selected.smspassword}" title="#{myBundle.ViewCompanyTitle_smspassword}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCompanyLabel_smsusername}"/>
+                            <h:outputText value="#{companyController.selected.smsusername}" title="#{myBundle.ViewCompanyTitle_smsusername}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

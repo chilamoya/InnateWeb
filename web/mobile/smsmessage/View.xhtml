@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="SmsmessageViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewSmsmessageTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:SmsmessageListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="SmsmessageViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{smsmessageController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewSmsmessageLabel_id}"/>
+                            <h:outputText value="#{smsmessageController.selected.id}" title="#{myBundle.ViewSmsmessageTitle_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewSmsmessageLabel_dwfield1}"/>
+                            <h:outputText value="#{smsmessageController.selected.dwfield1}" title="#{myBundle.ViewSmsmessageTitle_dwfield1}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewSmsmessageLabel_dwfield2}"/>
+                            <h:outputText value="#{smsmessageController.selected.dwfield2}" title="#{myBundle.ViewSmsmessageTitle_dwfield2}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewSmsmessageLabel_dwfield3}"/>
+                            <h:outputText value="#{smsmessageController.selected.dwfield3}" title="#{myBundle.ViewSmsmessageTitle_dwfield3}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewSmsmessageLabel_message}"/>
+                            <h:outputText value="#{smsmessageController.selected.message}" title="#{myBundle.ViewSmsmessageTitle_message}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewSmsmessageLabel_recipient}"/>
+                            <h:outputText value="#{smsmessageController.selected.recipient}" title="#{myBundle.ViewSmsmessageTitle_recipient}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewSmsmessageLabel_status}"/>
+                            <h:outputText value="#{smsmessageController.selected.status}" title="#{myBundle.ViewSmsmessageTitle_status}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewSmsmessageLabel_wfield1}"/>
+                            <h:outputText value="#{smsmessageController.selected.wfield1}" title="#{myBundle.ViewSmsmessageTitle_wfield1}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewSmsmessageLabel_wfield2}"/>
+                            <h:outputText value="#{smsmessageController.selected.wfield2}" title="#{myBundle.ViewSmsmessageTitle_wfield2}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewSmsmessageLabel_wfield3}"/>
+                            <h:outputText value="#{smsmessageController.selected.wfield3}" title="#{myBundle.ViewSmsmessageTitle_wfield3}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="AccountprocesstransactionCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateAccountprocesstransactionTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:AccountprocesstransactionListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="AccountprocesstransactionCreateForm">
+
+                <h:panelGroup id="display" rendered="#{accountprocesstransactionController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountprocesstransactionLabel_id}" for="id" />
+                            <p:inputText id="id" value="#{accountprocesstransactionController.selected.id}" title="#{myBundle.CreateAccountprocesstransactionTitle_id}" required="true" requiredMessage="#{myBundle.CreateAccountprocesstransactionRequiredMessage_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountprocesstransactionLabel_wfield1}" for="wfield1" />
+                            <p:inputTextarea rows="4" cols="30" id="wfield1" value="#{accountprocesstransactionController.selected.wfield1}" title="#{myBundle.CreateAccountprocesstransactionTitle_wfield1}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountprocesstransactionLabel_wfield2}" for="wfield2" />
+                            <p:inputTextarea rows="4" cols="30" id="wfield2" value="#{accountprocesstransactionController.selected.wfield2}" title="#{myBundle.CreateAccountprocesstransactionTitle_wfield2}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountprocesstransactionLabel_wfield3}" for="wfield3" />
+                            <p:inputTextarea rows="4" cols="30" id="wfield3" value="#{accountprocesstransactionController.selected.wfield3}" title="#{myBundle.CreateAccountprocesstransactionTitle_wfield3}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountprocesstransactionLabel_wfield4}" for="wfield4" />
+                            <p:inputTextarea rows="4" cols="30" id="wfield4" value="#{accountprocesstransactionController.selected.wfield4}" title="#{myBundle.CreateAccountprocesstransactionTitle_wfield4}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountprocesstransactionLabel_wfield5}" for="wfield5" />
+                            <p:inputText id="wfield5" value="#{accountprocesstransactionController.selected.wfield5}" title="#{myBundle.CreateAccountprocesstransactionTitle_wfield5}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountprocesstransactionLabel_wfield6}" for="wfield6" />
+                            <p:inputText id="wfield6" value="#{accountprocesstransactionController.selected.wfield6}" title="#{myBundle.CreateAccountprocesstransactionTitle_wfield6}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateAccountprocesstransactionLabel_accountprocessdefinitionId}" for="accountprocessdefinitionId" />
+                            <p:selectOneMenu id="accountprocessdefinitionId" value="#{accountprocesstransactionController.selected.accountprocessdefinitionId}"  converter="accountingprocessdefinitionConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{accountingprocessdefinitionController.items}"
+                                               var="accountprocessdefinitionIdItem"
+                                               itemValue="#{accountprocessdefinitionIdItem}"
+                                               itemLabel="#{accountprocessdefinitionIdItem.description.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{accountprocesstransactionController.saveNew}" value="#{myBundle.Save}" update="display,:AccountprocesstransactionListPage:AccountprocesstransactionListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:AccountprocesstransactionListPage')}">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>
